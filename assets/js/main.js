@@ -20,58 +20,102 @@ document.addEventListener('DOMContentLoaded', () => {
     if (audioCtx && audioCtx.state === 'suspended') {
       audioCtx.resume();
     }
+    return audioCtx;
   }
+
+  // Desbloqueia o AudioContext no primeiro gesto do usuário em qualquer lugar da tela
+  const unlockAudio = () => {
+    initAudio();
+    document.removeEventListener('click', unlockAudio);
+    document.removeEventListener('keydown', unlockAudio);
+    document.removeEventListener('touchstart', unlockAudio);
+  };
+  document.addEventListener('click', unlockAudio);
+  document.addEventListener('keydown', unlockAudio);
+  document.addEventListener('touchstart', unlockAudio);
 
   function playSound(type) {
     if (isSoundMuted) return;
     try {
       initAudio();
       if (!audioCtx) return;
-
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
 
       const now = audioCtx.currentTime;
 
       if (type === 'message') {
-        // Discord-like message pop chime
+        // Pop duplo característico de mensagem do PW/Discord
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(587.33, now); // D5
+        osc.frequency.setValueAtTime(659.25, now); // E5
         osc.frequency.exponentialRampToValueAtTime(880, now + 0.08); // A5
-        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.setValueAtTime(0.28, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
         osc.start(now);
         osc.stop(now + 0.22);
       } else if (type === 'voice-join') {
-        // Discord voice join chime
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(329.63, now); // E4
-        osc.frequency.setValueAtTime(440.00, now + 0.08); // A4
-        osc.frequency.setValueAtTime(659.25, now + 0.16); // E5
-        gain.gain.setValueAtTime(0.15, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-        osc.start(now);
-        osc.stop(now + 0.35);
+        // Acorde harmônico ascendente (Entrada em canal de voz)
+        [329.63, 415.30, 493.88].forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          const startTime = now + (idx * 0.07);
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, startTime);
+          gain.gain.setValueAtTime(0.24, startTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.25);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(startTime);
+          osc.stop(startTime + 0.25);
+        });
       } else if (type === 'voice-leave') {
-        // Disconnect chime
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(523.25, now); // C5
-        osc.frequency.setValueAtTime(392.00, now + 0.1); // G4
-        gain.gain.setValueAtTime(0.12, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
-        osc.start(now);
-        osc.stop(now + 0.28);
+        // Acorde descendente (Saída de canal de voz)
+        [493.88, 329.63].forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          const startTime = now + (idx * 0.08);
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, startTime);
+          gain.gain.setValueAtTime(0.22, startTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.22);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(startTime);
+          osc.stop(startTime + 0.22);
+        });
+      } else if (type === 'toggle-on') {
+        // Confirmação sonora clara ao ativar o som no cabeçalho
+        [523.25, 659.25].forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          const startTime = now + (idx * 0.06);
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, startTime);
+          gain.gain.setValueAtTime(0.26, startTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.18);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(startTime);
+          osc.stop(startTime + 0.18);
+        });
       } else if (type === 'click') {
-        // Subtle UI click
+        // Clique nítido de interface
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(600, now);
-        osc.frequency.exponentialRampToValueAtTime(200, now + 0.05);
-        gain.gain.setValueAtTime(0.05, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+        osc.frequency.setValueAtTime(700, now);
+        osc.frequency.exponentialRampToValueAtTime(250, now + 0.04);
+        gain.gain.setValueAtTime(0.18, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
         osc.start(now);
-        osc.stop(now + 0.05);
+        osc.stop(now + 0.04);
       }
     } catch (e) {
       console.warn('Audio feedback error:', e);
@@ -105,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isSoundMuted = !isSoundMuted;
       localStorage.setItem('pw_sound_muted', isSoundMuted);
       updateSoundUI();
-      if (!isSoundMuted) playSound('click');
+      if (!isSoundMuted) playSound('toggle-on');
     });
   }
 
