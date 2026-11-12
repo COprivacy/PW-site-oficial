@@ -241,9 +241,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // ----------------------------------------------------
   // 5. Simulador Interativo Discord / PW Client
   // ----------------------------------------------------
+  const svgIcons = {
+    flame: `<svg class="pw-icon pw-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>`,
+    heart: `<svg class="pw-icon pw-icon-xs pw-icon-purple" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`,
+    gamepad: `<svg class="pw-icon pw-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4m-2-2v4m9-3h.01m3 2h.01"/></svg>`,
+    thumbsup: `<svg class="pw-icon pw-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>`,
+    star: `<svg class="pw-icon pw-icon-xs pw-icon-purple" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+    rocket: `<svg class="pw-icon pw-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>`,
+    music: `<svg class="pw-icon pw-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`,
+    bot: `<svg class="pw-icon pw-icon-xs pw-icon-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/></svg>`
+  };
+
   const channelData = {
     'geral': {
-      title: '💬-geral',
+      title: 'geral',
       topic: 'Bem-vindo ao servidor oficial da plataforma PW! Converse sobre tudo.',
       messages: [
         {
@@ -251,8 +262,8 @@ document.addEventListener('DOMContentLoaded', () => {
           isBot: true,
           time: 'Hoje às 10:14',
           avatar: 'assets/images/logo-app.jpg',
-          text: 'E aí galera! 👋 Sejam todos muito bem-vindos ao <strong>PW Oficial</strong>. Aqui você pode conversar com áudio de baixa latência, jogar e conhecer novos amigos!',
-          reactions: [{ emoji: '🔥', count: 18 }, { emoji: '💜', count: 24 }]
+          text: 'E aí galera! Sejam todos muito bem-vindos ao <strong>PW Oficial</strong>. Aqui você pode conversar com áudio de baixa latência, jogar e conhecer novos amigos!',
+          reactions: [{ type: 'flame', count: 18 }, { type: 'heart', count: 24 }]
         },
         {
           author: 'SarahGamer',
@@ -260,42 +271,42 @@ document.addEventListener('DOMContentLoaded', () => {
           time: 'Hoje às 10:16',
           avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces',
           text: 'Quem topa fechar aquele squad no Valorant mais tarde? A qualidade da sala de voz tá incrível demais sem lag!',
-          reactions: [{ emoji: '🎮', count: 9 }]
+          reactions: [{ type: 'gamepad', count: 9 }]
         },
         {
           author: 'Lucas_Dev',
           isBot: false,
           time: 'Hoje às 10:18',
           avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces',
-          text: 'Testei a transmissão de tela em 1080p 60fps agora pouco com a rapaziada, rodou liso sem travar nada 🚀',
-          reactions: [{ emoji: '👏', count: 11 }]
+          text: 'Testei a transmissão de tela em 1080p 60fps agora pouco com a rapaziada, rodou liso sem travar nada.',
+          reactions: [{ type: 'thumbsup', count: 11 }]
         }
       ]
     },
     'clipes': {
-      title: '🎮-clipes-e-jogos',
-      topic: 'Compartilhe suas melhores jogadas, memes e clipes das suas partidas.',
+      title: 'clipes-e-jogos',
+      topic: 'Compartilhe suas melhores jogadas, destaques e clipes das suas partidas.',
       messages: [
         {
           author: 'PedroSniper',
           isBot: false,
           time: 'Hoje às 09:40',
           avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=faces',
-          text: 'Olha esse ace clutch no round final ontem à noite! O PW gravou o áudio do squad perfeitinho 🎯',
-          reactions: [{ emoji: '😱', count: 32 }]
+          text: 'Olha esse ace clutch no round final ontem à noite! O PW gravou o áudio do squad perfeitinho.',
+          reactions: [{ type: 'star', count: 32 }]
         },
         {
           author: 'PW Bot Mascote',
           isBot: true,
           time: 'Hoje às 09:42',
           avatar: 'assets/images/logo-app.jpg',
-          text: 'Jogada lendária detectada! Mandou muito bem! 🤖✨',
-          reactions: [{ emoji: '👑', count: 15 }]
+          text: 'Jogada lendária detectada! Mandou muito bem no clutch!',
+          reactions: [{ type: 'flame', count: 15 }]
         }
       ]
     },
     'anuncios': {
-      title: '📢-anuncios',
+      title: 'anuncios',
       topic: 'Novidades oficiais, atualizações de recursos e eventos da comunidade PW.',
       messages: [
         {
@@ -303,14 +314,14 @@ document.addEventListener('DOMContentLoaded', () => {
           isBot: true,
           time: 'Ontem às 18:00',
           avatar: 'assets/images/logo-pw.jpg',
-          text: '🎉 <strong>Atualização 2.4.0 no ar!</strong><br>• Novo mascote robô animado no aplicativo.<br>• Supressão de ruído IA nos canais de voz.<br>• Suporte total a servidores públicos e privados.<br>Obrigado por fazerem parte dessa jornada!',
-          reactions: [{ emoji: '🚀', count: 142 }, { emoji: '❤️', count: 98 }]
+          text: '<strong>Atualização 2.4.0 no ar!</strong><br>• Novo mascote robô animado no aplicativo.<br>• Supressão de ruído IA nos canais de voz.<br>• Suporte total a servidores públicos e privados.<br>Obrigado por fazerem parte dessa jornada!',
+          reactions: [{ type: 'rocket', count: 142 }, { type: 'heart', count: 98 }]
         }
       ]
     },
     'comandos': {
-      title: '🤖-comandos-bot',
-      topic: 'Use os comandos do PW Bot para tocar músicas, rolar dados e brincadeiras.',
+      title: 'comandos-bot',
+      topic: 'Use os comandos do PW Bot para tocar músicas, gerenciar cargos e brincadeiras.',
       messages: [
         {
           author: 'Membro_VIP',
@@ -325,9 +336,12 @@ document.addEventListener('DOMContentLoaded', () => {
           isBot: true,
           time: 'Hoje às 10:05',
           avatar: 'assets/images/logo-app.jpg',
-          text: '🎶 Tocando agora no canal <strong>🔊 Música & Resenha</strong>: Synthwave Lofi Beats (Ao Vivo) • [00:00 / 03:45]',
-          reactions: [{ emoji: '🎵', count: 7 }]
+          text: 'Tocando agora no canal <strong>Música & Resenha</strong>: Synthwave Lofi Beats (Ao Vivo) • [00:00 / 03:45]',
+          reactions: [{ type: 'music', count: 7 }]
         }
+      ]
+    }
+  };
       ]
     }
   };
@@ -356,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ? `<div class="msg-reactions">
             ${msg.reactions.map(r => `
               <button class="reaction-pill" data-idx="${idx}">
-                <span>${r.emoji}</span>
+                ${svgIcons[r.type] || ''}
                 <span>${r.count}</span>
               </button>
             `).join('')}
@@ -437,7 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isBot: true,
         time: timeStr,
         avatar: 'assets/images/logo-pw.jpg',
-        text: `🟢 <strong>Você</strong> conectou ao canal de voz <strong>${voiceName}</strong> com baixa latência (12ms).`,
+        text: `<span class="status-indicator-live" style="margin-right: 4px;"></span> <strong>Você</strong> conectou ao canal de voz <strong>${voiceName}</strong> com baixa latência (12ms).`,
         reactions: []
       });
       renderMessages(currentChannelKey);
@@ -470,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
         time: timeStr,
         avatar: 'assets/images/mascot-robot.jpg',
         text: escapeHTML(text),
-        reactions: [{ emoji: '💜', count: 1 }]
+        reactions: [{ type: 'heart', count: 1 }]
       });
 
       chatInputField.value = '';
@@ -485,10 +499,10 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         if (typingIndicator) typingIndicator.textContent = '';
         const botResponses = [
-          'Fala amigo! Que bom te ver aqui no PW! A plataforma tá sempre aberta para jogar e trocar aquela resenha boa! 🎮',
-          'Curti demais a mensagem! Bora chamar mais amigos para o seu servidor oficial! 🚀',
-          'O PW tá rodando liso! Sabia que você também pode criar cargos exclusivos e bots personalizados? ✨',
-          'Partiu jogar! Já estou preparando a playlist na sala de voz! 🎧🎶'
+          'Fala amigo! Que bom te ver aqui no PW! A plataforma está sempre pronta para jogar e trocar aquela resenha boa!',
+          'Curti demais a mensagem! Bora convidar mais amigos para o seu servidor oficial!',
+          'O PW está rodando super leve! Você também pode criar cargos exclusivos e bots personalizados.',
+          'Partiu jogar! Já estou preparando a playlist na sala de voz!'
         ];
         const randomResp = botResponses[Math.floor(Math.random() * botResponses.length)];
 
@@ -498,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
           time: timeStr,
           avatar: 'assets/images/logo-app.jpg',
           text: randomResp,
-          reactions: [{ emoji: '🤖', count: 3 }, { emoji: '✨', count: 5 }]
+          reactions: [{ type: 'bot', count: 3 }, { type: 'star', count: 5 }]
         });
 
         renderMessages(currentChannelKey);
@@ -599,3 +613,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+

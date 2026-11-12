@@ -99,6 +99,83 @@ body {
   background: var(--pw-purple);
 }
 
+/* Utilitários de Ícones SVG Profissionais */
+.pw-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.pw-icon-xs {
+  width: 13px;
+  height: 13px;
+}
+
+.pw-icon-sm {
+  width: 16px;
+  height: 16px;
+}
+
+.pw-icon-md {
+  width: 20px;
+  height: 20px;
+}
+
+.pw-icon-lg {
+  width: 26px;
+  height: 26px;
+}
+
+.pw-icon-xl {
+  width: 32px;
+  height: 32px;
+}
+
+.pw-icon-purple {
+  color: var(--pw-purple-light);
+}
+
+.pw-icon-success {
+  color: var(--pw-online);
+}
+
+.pw-icon-dim {
+  color: var(--text-dim);
+}
+
+/* Indicador de Status com Pulso */
+.status-indicator-live {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--pw-online);
+  box-shadow: 0 0 10px var(--pw-online);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.status-indicator-live::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1.5px solid var(--pw-online);
+  opacity: 0.7;
+  animation: pulseLive 2s infinite ease-out;
+}
+
+@keyframes pulseLive {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
 /* Links e Botões */
 a {
   color: inherit;
@@ -814,6 +891,13 @@ img {
   object-fit: cover;
 }
 
+.guild-item svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 2;
+  transition: var(--transition);
+}
+
 .guild-item:hover, .guild-item.active {
   border-radius: 16px;
   background: var(--pw-purple);
@@ -1123,7 +1207,7 @@ img {
 .reaction-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.35rem;
   font-size: 0.75rem;
   padding: 0.15rem 0.5rem;
   border-radius: 6px;
@@ -1132,6 +1216,13 @@ img {
   color: var(--text-muted);
   cursor: pointer;
   transition: var(--transition);
+}
+
+.reaction-pill svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  stroke-width: 2;
 }
 
 .reaction-pill:hover, .reaction-pill.reacted {
@@ -1520,6 +1611,13 @@ img {
   color: var(--pw-purple-light);
   margin-bottom: 1.3rem;
   font-size: 1.4rem;
+}
+
+.benefit-icon svg {
+  width: 26px;
+  height: 26px;
+  stroke-width: 2;
+  transition: var(--transition);
 }
 
 .benefit-card:hover .benefit-icon {
@@ -2013,3 +2111,4 @@ img {
     align-items: center;
   }
 }
+
