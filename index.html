@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PW - Conversar, jogar e fazer amizades | Site Oficial</title>
+  
+  <!-- SEO & Metatags -->
+  <meta name="description" content="PW é a plataforma definitiva para conversar, jogar e fazer amizades. Canais organizados, chamadas de voz com ultra baixa latência, transmissão em 1080p 60fps e privacidade COprivacy.">
+  <meta name="keywords" content="PW, discord alternativo, conversar jogar amigos, gamer chat, voz discord, comunidade gamer, COprivacy">
+  <meta name="author" content="COprivacy">
+  <meta name="theme-color" content="#0d0718">
+
+  <!-- Open Graph / Redes Sociais -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PW - Conversar, jogar e fazer amizades">
+  <meta property="og:description" content="Junte-se ao PW! O melhor lugar para reunir sua galera, jogar juntos e curtir canais de voz de alta qualidade.">
+  <meta property="og:image" content="assets/images/logo-app.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Folha de Estilos -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Canvas de Fundo (Estrelas & Cyber Partículas) -->
+  <canvas id="starsCanvas"></canvas>
+
+  <!-- ==========================================================================
+       Cabeçalho / Barra de Navegação Superior
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <!-- Marca PW -->
+      <a href="#inicio" class="brand">
+        <img src="assets/images/logo-app.jpg" alt="Logo PW" class="brand-logo-img">
+        <div class="brand-text">
+          <span class="brand-title">PW <span class="gradient-text-purple">Oficial</span></span>
+          <span class="brand-tag">Conversar, Jogar & Amigos</span>
+        </div>
+      </a>
+
+      <!-- Menu Principal -->
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#inicio" class="nav-link active">Início</a></li>
+        <li><a href="#recursos" class="nav-link">Recursos</a></li>
+        <li><a href="#demo" class="nav-link">Simulador Web</a></li>
+        <li><a href="#mascote" class="nav-link">Mascote</a></li>
+        <li><a href="#vantagens" class="nav-link">Vantagens</a></li>
+        <li><a href="#baixar" class="nav-link">Baixar</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+      </ul>
+
+      <!-- Ações do Cabeçalho -->
+      <div class="nav-actions">
+        <!-- Botão de Efeitos Sonoros -->
+        <button id="soundToggleBtn" class="sound-toggle-btn" title="Ativar/Desativar Efeitos de Áudio">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+          <span>Som: Ativo</span>
+        </button>
+
+        <a href="#demo" class="btn btn-secondary btn-sm btn-open-web">Abrir no Navegador</a>
+        <a href="#baixar" class="btn btn-primary btn-sm btn-glow">Baixar Grátis</a>
+
+        <!-- Botão Menu Mobile -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Hero Section (Inspirado no visual icônico do Discord com Neon Roxo)
+       ========================================================================== -->
+  <section class="hero-section" id="inicio">
+    <div class="hero-glow-orb hero-glow-1"></div>
+    <div class="hero-glow-orb hero-glow-2"></div>
+
+    <div class="container hero-grid">
+      <!-- Coluna da Esquerda (Copy & CTAs) -->
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span>✨</span>
+          <span>A NOVA ERA DA COMUNICAÇÃO GAMER</span>
+        </div>
+
+        <h1 class="hero-title">
+          IMAGINE UM LUGAR...<br>
+          <span class="gradient-text">ONDE VOCÊ PERTENCE.</span>
+        </h1>
+
+        <p class="hero-desc">
+          O <strong>PW</strong> é o seu ponto de encontro para <strong>conversar, jogar e fazer amizades</strong>. 
+          Junte-se a servidores organizados, converse por voz com baixíssima latência, transmita suas gameplays em 1080p 60fps e faça parte de uma comunidade que não para de crescer.
+        </p>
+
+        <div class="hero-cta-wrapper">
+          <div class="hero-cta-buttons">
+            <a href="#baixar" class="btn btn-primary btn-lg btn-glow" data-download-platform="Windows">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.949-1.801"/></svg>
+              <div>
+                <span>Baixar para Windows</span>
+                <span class="hero-btn-subtext">Versão 2.4.0 • 64-bit • Grátis</span>
+              </div>
+            </a>
+
+            <a href="#demo" class="btn btn-secondary btn-lg btn-open-web">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              <span>Abrir o PW no Navegador</span>
+            </a>
+          </div>
+
+          <div class="hero-platforms">
+            <span>Também disponível para:</span>
+            <strong>Windows • macOS • Linux • Android • iOS</strong>
+          </div>
+        </div>
+
+        <!-- Estatísticas de Destaque -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-value">12ms</span>
+            <span class="stat-label">Latência Média de Áudio</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">1080p</span>
+            <span class="stat-label">Streaming 60 FPS Grátis</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">100%</span>
+            <span class="stat-label">Protegido por COprivacy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna da Direita (Mascote Robô 3D com Efeitos Flutuantes) -->
+      <div class="hero-mascot-card">
+        <div class="mascot-frame-inner">
+          <img src="assets/images/mascot-robot.jpg" alt="Mascote Robô Oficial do PW" class="mascot-image">
+
+          <!-- Badges Flutuantes Interativas -->
+          <div class="mascot-badge mascot-badge-1">
+            <div class="badge-icon">🎧</div>
+            <div class="badge-text">
+              <span class="badge-title">Voz Conectada: #Squad-Ranked</span>
+              <div class="sound-bars">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mascot-badge mascot-badge-2">
+            <div class="badge-icon">🤖</div>
+            <div class="badge-text">
+              <span class="badge-title">PW Bot Mascote</span>
+              <span class="badge-sub">"Bora fechar aquele jogo?"</span>
+            </div>
+          </div>
+
+          <div class="mascot-badge mascot-badge-3">
+            <div class="badge-icon" style="color: var(--pw-online)">🟢</div>
+            <div class="badge-text">
+              <span class="badge-title">Comunidade Ativa</span>
+              <span class="badge-sub">+12.400 gamers online</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Simulador Interativo do PW (Client Discord Experience)
+       ========================================================================== -->
+  <section class="demo-section" id="demo">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-pill">EXPERIMENTE AO VIVO</div>
+        <h2 class="section-title">Sinta a experiência real do PW</h2>
+        <p class="section-desc">
+          Navegue pelos canais de texto, entre em salas de voz com efeito sonoro real e mande uma mensagem para conversar com o mascote robô!
+        </p>
+      </div>
+
+      <!-- Janela do Aplicativo PW -->
+      <div class="app-window">
+        <!-- Titlebar -->
+        <div class="window-titlebar">
+          <div class="window-controls">
+            <span class="window-dot dot-close" title="Fechar"></span>
+            <span class="window-dot dot-min" title="Minimizar"></span>
+            <span class="window-dot dot-max" title="Maximizar"></span>
+          </div>
+          <div class="window-title">
+            <img src="assets/images/logo-pw.jpg" alt="PW Icon" style="width: 16px; height: 16px; border-radius: 4px;">
+            <span>PW - Conversar, jogar e fazer amizades (Versão Web Oficial)</span>
+          </div>
+          <div class="window-status-badge">● 100% Online</div>
+        </div>
+
+        <!-- Layout do Cliente PW -->
+        <div class="client-layout">
+          <!-- 1. Coluna de Servidores (Guilds) -->
+          <div class="guilds-sidebar">
+            <div class="guild-item active" title="PW Oficial">
+              <img src="assets/images/logo-app.jpg" alt="PW Oficial">
+            </div>
+            <div class="guild-separator"></div>
+            <div class="guild-item" title="Comunidade Gamers BR">🎮</div>
+            <div class="guild-item" title="Anime & Lofi Chill">☕</div>
+            <div class="guild-item" title="Clube dos Devs">💻</div>
+            <div class="guild-item" title="Criar um Servidor" style="background: rgba(255,255,255,0.08); color: var(--pw-online)">+</div>
+          </div>
+
+          <!-- 2. Coluna de Canais -->
+          <div class="channels-sidebar">
+            <div class="server-header">
+              <span>PW Oficial 🛡️</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+
+            <div class="channels-list">
+              <div class="channel-category">CANAIS DE TEXTO</div>
+              <button class="channel-btn active" data-channel="geral">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+                <span>💬-geral</span>
+              </button>
+              <button class="channel-btn" data-channel="clipes">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+                <span>🎮-clipes-e-jogos</span>
+              </button>
+              <button class="channel-btn" data-channel="anuncios">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+                <span>📢-anuncios</span>
+              </button>
+              <button class="channel-btn" data-channel="comandos">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+                <span>🤖-comandos-bot</span>
+              </button>
+
+              <div class="channel-category" style="margin-top: 0.6rem;">CANAIS DE VOZ & VÍDEO</div>
+              <button class="channel-btn" data-voice="Sala Geral">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                <span>🔊 Sala Geral</span>
+                <span class="voice-count">3/10</span>
+              </button>
+              <button class="channel-btn" data-voice="Squad Ranked">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                <span>🔊 Squad Ranked</span>
+                <span class="voice-count">4/5</span>
+              </button>
+              <button class="channel-btn" data-voice="Música & Resenha">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                <span>🔊 Música & Resenha</span>
+                <span class="voice-count">2/∞</span>
+              </button>
+            </div>
+
+            <!-- Rodapé do Usuário -->
+            <div class="user-bar">
+              <div class="user-bar-profile">
+                <div class="user-bar-avatar">
+                  <span>PW</span>
+                  <span class="user-status-dot"></span>
+                </div>
+                <div class="user-bar-info">
+                  <span class="user-bar-name">Você</span>
+                  <span class="user-bar-tag">#0001</span>
+                </div>
+              </div>
+              <div class="user-bar-actions">
+                <button class="user-action-icon" title="Microfone"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></button>
+                <button class="user-action-icon" title="Áudio"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg></button>
+                <button class="user-action-icon" title="Configurações"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Coluna Principal do Chat -->
+          <div class="chat-area">
+            <!-- Header do Canal -->
+            <div class="chat-header">
+              <div class="chat-header-title">
+                <span id="chatHeaderTitle">#💬-geral</span>
+                <span class="chat-header-topic" id="chatHeaderTopic">Bem-vindo ao servidor oficial da plataforma PW! Converse sobre tudo.</span>
+              </div>
+            </div>
+
+            <!-- Overlay de Chamada de Voz Ativa (Opcional) -->
+            <div class="voice-call-overlay" id="voiceCallOverlay" style="display: none;">
+              <div class="voice-call-info">
+                <div class="voice-users-speaking">
+                  <img src="assets/images/mascot-robot.jpg" alt="Mascote" class="voice-user-ring" title="Mascote PW (Falando)">
+                  <img src="assets/images/logo-app.jpg" alt="Você" class="voice-user-ring" title="Você (Conectado)">
+                </div>
+                <div>
+                  <div style="font-size: 0.85rem; font-weight: 700; color: #fff;" id="voiceChannelTitle">Sala de Voz</div>
+                  <div style="font-size: 0.72rem; color: var(--pw-online);">● Conectado (RTC 12ms • Voz HD)</div>
+                </div>
+              </div>
+              <div class="voice-controls">
+                <button class="voice-btn-disconnect" id="disconnectVoiceBtn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"></path><line x1="23" y1="1" x2="1" y2="23"></line></svg>
+                  <span>Desconectar</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Feed de Mensagens -->
+            <div class="chat-messages" id="chatMessages">
+              <!-- Preenchido via main.js -->
+            </div>
+
+            <!-- Indicador de Digitação -->
+            <div class="typing-indicator" id="typingIndicator"></div>
+
+            <!-- Caixa de Digitação -->
+            <div class="chat-input-bar">
+              <form id="chatInputForm" class="chat-input-box">
+                <button type="button" class="tool-btn" title="Adicionar anexo" style="font-size: 1.1rem;">+</button>
+                <input type="text" id="chatInputField" class="chat-input-field" placeholder="Conversar em #💬-geral... (Digite algo e aperte Enter!)" autocomplete="off">
+                <div class="chat-tools">
+                  <button type="button" class="tool-btn" title="Presentear Nitro/PW Pass">🎁</button>
+                  <button type="button" class="tool-btn" title="Inserir GIF">GIF</button>
+                  <button type="button" class="tool-btn" title="Emojis">😊</button>
+                  <button type="submit" class="btn btn-primary btn-sm" style="padding: 0.35rem 0.8rem; font-size: 0.8rem;">Enviar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- 4. Coluna de Membros do Servidor -->
+          <div class="members-sidebar">
+            <div class="member-category">ONLINE — 3</div>
+
+            <div class="member-item">
+              <div class="member-avatar-wrap">
+                <img src="assets/images/logo-app.jpg" alt="Mascote PW" class="member-avatar">
+                <span class="member-status status-online"></span>
+              </div>
+              <div class="member-info">
+                <span class="member-name" style="color: var(--pw-purple-light);">PW Bot Mascote 👑</span>
+                <span class="member-activity">Tocando Synthwave</span>
+              </div>
+            </div>
+
+            <div class="member-item">
+              <div class="member-avatar-wrap">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces" alt="SarahGamer" class="member-avatar">
+                <span class="member-status status-online"></span>
+              </div>
+              <div class="member-info">
+                <span class="member-name">SarahGamer</span>
+                <span class="member-activity">Jogando Valorant</span>
+              </div>
+            </div>
+
+            <div class="member-item">
+              <div class="member-avatar-wrap">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces" alt="Lucas_Dev" class="member-avatar">
+                <span class="member-status status-idle"></span>
+              </div>
+              <div class="member-info">
+                <span class="member-name">Lucas_Dev</span>
+                <span class="member-activity">Codando no VS Code</span>
+              </div>
+            </div>
+
+            <div class="member-category" style="margin-top: 1rem;">OFFLINE — 9</div>
+
+            <div class="member-item" style="opacity: 0.6;">
+              <div class="member-avatar-wrap">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=faces" alt="PedroSniper" class="member-avatar">
+              </div>
+              <div class="member-info">
+                <span class="member-name">PedroSniper</span>
+                <span class="member-activity">Ausente</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Seções de Recursos com Design Alternado (Estilo Discord)
+       ========================================================================== -->
+  <section class="features-section" id="recursos">
+    <div class="container">
+      
+      <!-- Feature 1: Canais Organizados -->
+      <div class="feature-row">
+        <div class="feature-text">
+          <div class="feature-badge">⚡ Organização Impecável</div>
+          <h2 class="feature-title">Crie um espaço apenas para convidados onde você possa pertencer</h2>
+          <p class="feature-desc">
+            Os servidores do <strong>PW</strong> são organizados em canais com assuntos específicos para você colaborar, compartilhar ou simplesmente falar do seu dia a dia sem lotar um chat geral.
+          </p>
+          <ul class="feature-list">
+            <li class="feature-list-item">
+              <span class="feature-check">✔</span>
+              <span>Canais de texto categorizados por jogos, memes, estudos e resenhas.</span>
+            </li>
+            <li class="feature-list-item">
+              <span class="feature-check">✔</span>
+              <span>Cargos e permissões personalizadas para moderadores e amigos VIPs.</span>
+            </li>
+            <li class="feature-list-item">
+              <span class="feature-check">✔</span>
+              <span>Notificações inteligentes: seja alertado apenas no que importa.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <div class="feature-card-glow">
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 1rem;">Estrutura de Comunidade Moderna</h3>
+            <div style="background: rgba(10, 5, 18, 0.85); border-radius: 12px; padding: 1.2rem; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="color: var(--pw-purple-light); font-size: 0.75rem; font-weight: 800; margin-bottom: 0.5rem;">📁 SERVIDORES PERSONALIZADOS</div>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem;">
+                <div style="padding: 0.4rem 0.8rem; background: rgba(168,85,247,0.15); border-radius: 6px; color: #fff;"># 🎮-torneio-semanal</div>
+                <div style="padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.03); border-radius: 6px; color: var(--text-muted);"># 🎨-fanarts-e-designs</div>
+                <div style="padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.03); border-radius: 6px; color: var(--text-muted);"># 🎵-pedidos-de-musica</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2: Salas de Voz e Vídeo (Invertido) -->
+      <div class="feature-row reverse">
+        <div class="feature-text">
+          <div class="feature-badge">🎧 Voz Cristalina</div>
+          <h2 class="feature-title">Onde é fácil passar um tempo junto sem complicações</h2>
+          <p class="feature-desc">
+            Entre em um canal de voz quando estiver livre. Seus amigos podem ver que você está por lá e entrar na conversa sem precisar ligar ou incomodar ninguém.
+          </p>
+          <ul class="feature-list">
+            <li class="feature-list-item">
+              <span class="feature-check">✔</span>
+              <span>Codec de áudio Opus de alta fidelidade com baixíssima latência (12-15ms).</span>
+            </li>
+            <li class="feature-list-item">
+              <span class="feature-check">✔</span>
+              <span>Supressão de ruído IA integrada: teclado mecânico e ruídos de fundo somem.</span>
+            </li>
+            <li class="feature-list-item">
+              <span class="feature-check">✔</span>
+              <span>Controle de volume individual para cada amigo na chamada.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <div class="feature-card-glow">
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 1rem;">Chamadas de Voz Sem Latência</h3>
+            <div style="background: rgba(10, 5, 18, 0.85); border-radius: 12px; padding: 1.2rem; border: 1px solid rgba(255,255,255,0.08); text-align: center;">
+              <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem;">
+                <div style="text-align: center;">
+                  <img src="assets/images/logo-app.jpg" style="width: 56px; height: 56px; border-radius: 50%; border: 3px solid var(--pw-online); margin: 0 auto 0.4rem;">
+                  <span style="font-size: 0.75rem; color: #fff; font-weight: 700;">Você (Falando)</span>
+                </div>
+                <div style="text-align: center;">
+                  <img src="assets/images/mascot-robot.jpg" style="width: 56px; height: 56px; border-radius: 50%; border: 3px solid var(--pw-purple-glow); margin: 0 auto 0.4rem;">
+                  <span style="font-size: 0.75rem; color: #fff; font-weight: 700;">Mascote PW</span>
+                </div>
+              </div>
+              <div style="font-size: 0.8rem; color: var(--pw-online); font-weight: 700;">● Equalização Ativa • 64 kbps HD Áudio</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 3: Compartilhamento de Tela 1080p 60FPS -->
+      <div class="feature-row">
+        <div class="feature-text">
+          <div class="feature-badge">🎮 Transmissão Gamer</div>
+          <h2 class="feature-title">Transmita sua gameplay em 1080p 60fps sem engasgos</h2>
+          <p class="feature-desc">
+            Seja um clutch épico no Valorant, uma construção no Minecraft ou uma sessão de filmes no cinema virtual com a galera: o PW oferece streaming de tela com sincronia de áudio perfeita e sem limites artificiais de tempo.
+          </p>
+          <ul class="feature-list">
+            <li class="feature-list-item">
+              <span class="feature-check">✔</span>
+              <span>Transmissão em Full HD (1080p) a 60 quadros por segundo sem custo.</span>
+            </li>
+            <li class="feature-list-item">
+              <span class="feature-check">✔</span>
+              <span>Transmita apenas uma janela específica do jogo ou a área de trabalho inteira.</span>
+            </li>
+            <li class="feature-list-item">
+              <span class="feature-check">✔</span>
+              <span>Áudio do jogo e microfone capturados separadamente para equilíbrio perfeito.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <div class="feature-card-glow">
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 1rem;">Gaming Stream Dashboard</h3>
+            <div style="background: rgba(10, 5, 18, 0.85); border-radius: 12px; padding: 1.2rem; border: 1px solid rgba(255,255,255,0.08); text-align: center;">
+              <div style="position: relative; border-radius: 8px; overflow: hidden; margin-bottom: 0.8rem; background: #000; height: 140px; display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 2.5rem;">🎮</span>
+                <span style="position: absolute; top: 8px; left: 8px; background: #ef4444; color: #fff; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 4px;">AO VIVO • 1080p60</span>
+                <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: 0.7rem; padding: 0.15rem 0.4rem; border-radius: 4px;">FPS: 60 • Bitrate: 6.5 Mbps</span>
+              </div>
+              <span style="font-size: 0.85rem; color: #fff; font-weight: 600;">Transmitindo: Valorant Ranked match</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 4: O Mascote Robô PW (Destaque Exclusivo) -->
+      <div class="feature-row reverse" id="mascote">
+        <div class="feature-text">
+          <div class="feature-badge">🤖 Mascote Oficial</div>
+          <h2 class="feature-title">Conheça o Robô Mascote do PW: Seu Maior Aliado</h2>
+          <p class="feature-desc">
+            Com seu fone gamer roxo e estilo futurista, o robô mascote é a cara da plataforma <strong>PW</strong>! Ele não é apenas um design fofo: ele representa toda a tecnologia e os recursos inteligentes integrados em cada servidor.
+          </p>
+          <ul class="feature-list">
+            <li class="feature-list-item">
+              <span class="feature-check">✔</span>
+              <span><strong>Moderação Inteligente:</strong> Proteção automática contra spam, links maliciosos e invasões.</span>
+            </li>
+            <li class="feature-list-item">
+              <span class="feature-check">✔</span>
+              <span><strong>DJ de Música Integrado:</strong> Toque músicas com comandos simples direto nas chamadas de voz.</span>
+            </li>
+            <li class="feature-list-item">
+              <span class="feature-check">✔</span>
+              <span><strong>Boas-vindas Personalizadas:</strong> Mensagens calorosas para novos membros que entram no seu servidor.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <div class="feature-card-glow">
+            <div class="mascot-spotlight">
+              <img src="assets/images/mascot-robot.jpg" alt="Robô Mascote PW" class="mascot-thumb">
+              <div>
+                <h4 style="font-size: 1.1rem; color: #fff; font-weight: 800;">"E aí gamer! Partiu conversar?"</h4>
+                <p class="mascot-quotes">
+                  "O PW foi feito para quem ama jogos, risadas e amizades de verdade. Estou aqui para garantir que sua experiência seja sempre rápida, divertida e segura!"
+                </p>
+                <div style="margin-top: 0.8rem; font-size: 0.78rem; color: var(--pw-purple-light); font-weight: 700;">
+                  — Mascote Oficial PW
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Vantagens & Segurança COprivacy
+       ========================================================================== -->
+  <section class="benefits-section" id="vantagens">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-pill">POR QUE ESCOLHER O PW?</div>
+        <h2 class="section-title">Tecnologia de ponta com segurança total</h2>
+        <p class="section-desc">
+          Desenvolvido com o compromisso de privacidade da <strong>COprivacy</strong>, o PW foi construído do zero para oferecer velocidade incomparável e respeito total aos seus dados.
+        </p>
+      </div>
+
+      <div class="benefits-grid">
+        <!-- Card 1 -->
+        <div class="benefit-card">
+          <div class="benefit-icon">🔒</div>
+          <h3 class="benefit-title">Privacidade COprivacy</h3>
+          <p class="benefit-desc">
+            Criptografia ponta a ponta e compromisso rígido com a não comercialização dos seus dados pessoais ou registros de conversa.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="benefit-card">
+          <div class="benefit-icon">⚡</div>
+          <h3 class="benefit-title">Ultra Leve (Baixo Uso de RAM)</h3>
+          <p class="benefit-desc">
+            Enquanto outros apps devoram a memória do seu computador, o PW foi otimizado para rodar em segundo plano sem tirar 1 FPS dos seus jogos.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="benefit-card">
+          <div class="benefit-icon">🎭</div>
+          <h3 class="benefit-title">Cargos & Permissões Granulares</h3>
+          <p class="benefit-desc">
+            Personalize hierarquias inteiras: cores de cargos, permissões por canal de texto ou voz, canais secretos e distintivos de comunidade.
+          </p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="benefit-card">
+          <div class="benefit-icon">🎵</div>
+          <h3 class="benefit-title">Bots & Automação Completa</h3>
+          <p class="benefit-desc">
+            Integrações abertas com bots de música, comandos de minigames, sistemas de níveis (XP) e ferramentas completas de administração.
+          </p>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="benefit-card">
+          <div class="benefit-icon">☁️</div>
+          <h3 class="benefit-title">Sincronização Nuvem Imediata</h3>
+          <p class="benefit-desc">
+            Comece uma conversa no seu desktop e continue no celular ou notebook sem perder o fio da meada ou o histórico recente.
+          </p>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="benefit-card">
+          <div class="benefit-icon">🎨</div>
+          <h3 class="benefit-title">Customização Visual & Temas</h3>
+          <p class="benefit-desc">
+            Modo escuro imersivo com efeitos Neon Roxo oficiais, fontes personalizadas, figurinhas animadas e emojis exclusivos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Download Multiplataforma
+       ========================================================================== -->
+  <section class="download-section" id="baixar">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-pill">MULTI-PLATAFORMA</div>
+        <h2 class="section-title">Baixe o PW para qualquer dispositivo</h2>
+        <p class="section-desc">
+          Disponível gratuitamente para computadores, celulares e direto no seu navegador favorito.
+        </p>
+      </div>
+
+      <div class="download-grid">
+        <!-- Windows -->
+        <div class="download-card highlight">
+          <div class="download-platform-icon">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.949-1.801"/></svg>
+          </div>
+          <h3 class="download-title">Windows</h3>
+          <p class="download-sub">Windows 10 / 11 (64-bit)</p>
+          <button class="btn btn-primary btn-glow" data-download-platform="Windows">Baixar .EXE</button>
+          <span class="download-meta">Versão 2.4.0 • 78 MB</span>
+        </div>
+
+        <!-- Android -->
+        <div class="download-card">
+          <div class="download-platform-icon">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5896 8.3585 13.8566 8 12 8s-3.5896.3585-5.1368.9507L4.8409 5.4477a.416.416 0 00-.5676-.1521.416.416 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/></svg>
+          </div>
+          <h3 class="download-title">Android</h3>
+          <p class="download-sub">Android 8.0 ou superior</p>
+          <button class="btn btn-secondary" data-download-platform="Android">Baixar APK</button>
+          <span class="download-meta">Google Play & APK Direto</span>
+        </div>
+
+        <!-- iOS -->
+        <div class="download-card">
+          <div class="download-platform-icon">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.47c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.1.65-2.77 1.43-.59.68-1.1 1.74-1.01 2.79 1.07.08 2.16-.6 2.77-1.35z"/></svg>
+          </div>
+          <h3 class="download-title">iOS / iPhone</h3>
+          <p class="download-sub">iOS 14.0 ou superior</p>
+          <button class="btn btn-secondary" data-download-platform="iOS">App Store</button>
+          <span class="download-meta">iPhone, iPad & Mac</span>
+        </div>
+
+        <!-- Web Client -->
+        <div class="download-card">
+          <div class="download-platform-icon">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          </div>
+          <h3 class="download-title">Web</h3>
+          <p class="download-sub">Chrome, Edge, Firefox, Safari</p>
+          <a href="#demo" class="btn btn-secondary btn-open-web">Abrir no Navegador</a>
+          <span class="download-meta">Sem precisar instalar nada</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FAQ - Perguntas Frequentes
+       ========================================================================== -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-pill">DÚVIDAS COMUNS</div>
+        <h2 class="section-title">Perguntas Frequentes sobre o PW</h2>
+        <p class="section-desc">
+          Tire suas principais dúvidas sobre como começar e usar a plataforma.
+        </p>
+      </div>
+
+      <div class="faq-container">
+        <!-- Item 1 -->
+        <div class="faq-item active">
+          <button class="faq-question">
+            <span>O que é a plataforma PW?</span>
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-answer">
+            O <strong>PW</strong> é uma plataforma moderna inspirada no Discord focada em permitir que grupos de amigos e comunidades possam <strong>conversar, jogar e fazer amizades</strong>. Ela conta com servidores com canais de texto e voz, transmissão ao vivo em alta definição, bots automatizados e mascote inteligente.
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>O PW é 100% gratuito?</span>
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-answer">
+            Sim! Você pode criar servidores ilimitados, convidar quantos amigos quiser, utilizar salas de voz com qualidade HD e fazer transmissões em 1080p 60fps sem pagar nada.
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Quem é o robô mascote que aparece nas fotos e no site?</span>
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-answer">
+            Ele é o mascote oficial do PW! Um robô gamer estiloso com fone de ouvido neon roxo que representa a automação, a inteligência e o carinho da equipe com a comunidade. Ele atua como bot de boas-vindas, segurança e entretenimento dentro da plataforma.
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Como funciona a segurança e o selo COprivacy?</span>
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-answer">
+            O PW foi criado sob as diretrizes da iniciativa <strong>COprivacy</strong>, o que significa que não rastreamos seus hábitos, não vendemos seus dados para empresas de anúncio e protegemos suas transmissões com criptografia de ponta a ponta.
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Posso usar o PW direto no celular sem computador?</span>
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-answer">
+            Com certeza! O PW possui aplicativos dedicados para celulares Android e iOS, além de rodar perfeitamente direto pelo navegador mobile sem consumir quase nada de bateria.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CTA Banner Final
+       ========================================================================== -->
+  <section class="cta-banner-section">
+    <div class="container">
+      <div class="cta-banner">
+        <h2 class="cta-title">Pronto para começar sua jornada no PW?</h2>
+        <p class="cta-desc">
+          Junte-se a milhares de pessoas que já estão conversando, jogando e fazendo amizades todos os dias. Crie seu servidor em menos de 1 minuto!
+        </p>
+        <div class="cta-buttons">
+          <a href="#baixar" class="btn btn-primary btn-lg btn-glow" data-download-platform="Windows">Baixar Agora para Windows</a>
+          <a href="#demo" class="btn btn-secondary btn-lg btn-open-web">Experimentar na Web</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Rodapé (Footer)
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Coluna da Marca -->
+        <div class="footer-brand-col">
+          <div class="footer-logo">
+            <img src="assets/images/logo-pw.jpg" alt="Logo PW Oficial">
+            <span class="footer-logo-title">PW</span>
+          </div>
+          <p class="footer-desc">
+            PW - Conversar, jogar e fazer amizades.<br>
+            A nova plataforma de comunicação gamer e comunitária feita para conectar pessoas com segurança total.
+          </p>
+          <div class="footer-socials">
+            <a href="https://github.com/COprivacy/PW-site-oficial" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub Oficial COprivacy">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="#demo" class="social-btn" title="Servidor Oficial PW">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Links Produto -->
+        <div>
+          <h4 class="footer-col-title">Produto</h4>
+          <ul class="footer-links">
+            <li><a href="#baixar">Baixar para PC</a></li>
+            <li><a href="#demo">Web Client</a></li>
+            <li><a href="#recursos">Salas de Voz HD</a></li>
+            <li><a href="#recursos">Streaming 60 FPS</a></li>
+            <li><a href="#vantagens">Status do Sistema</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Comunidade -->
+        <div>
+          <h4 class="footer-col-title">Comunidade</h4>
+          <ul class="footer-links">
+            <li><a href="#demo">Servidor Oficial PW</a></li>
+            <li><a href="#mascote">Mascote & Bots</a></li>
+            <li><a href="#inicio">Diretrizes da Comunidade</a></li>
+            <li><a href="#faq">Central de Ajuda</a></li>
+          </ul>
+        </div>
+
+        <!-- Links COprivacy -->
+        <div>
+          <h4 class="footer-col-title">COprivacy</h4>
+          <ul class="footer-links">
+            <li><a href="https://github.com/COprivacy" target="_blank">Perfil GitHub</a></li>
+            <li><a href="#vantagens">Política de Privacidade</a></li>
+            <li><a href="#vantagens">Termos de Serviço</a></li>
+            <li><a href="#faq">Transparência</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Rodapé Inferior -->
+      <div class="footer-bottom">
+        <div>
+          © 2026 <strong>PW - Conversar, jogar e fazer amizades</strong>. Todos os direitos reservados. Mantido por <a href="https://github.com/COprivacy" target="_blank" style="color: var(--pw-purple-light); font-weight: 700;">COprivacy</a>.
+        </div>
+        <div class="footer-bottom-links">
+          <a href="#inicio">Início</a>
+          <a href="#recursos">Recursos</a>
+          <a href="#baixar">Downloads</a>
+          <a href="#faq">Suporte</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       Modal de Download Interativo
+       ========================================================================== -->
+  <div class="modal-overlay" id="downloadModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Fechar Modal">&times;</button>
+      <img src="assets/images/logo-app.jpg" alt="PW Logo" class="modal-icon">
+      <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">Download do PW</h3>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+        Preparando o instalador do PW para <strong id="modalPlatformName" style="color: #fff;">Windows</strong> com aceleração por hardware e áudio HD.
+      </p>
+      <button class="btn btn-primary btn-glow" id="modalDownloadAction" style="width: 100%; margin-bottom: 1rem;">
+        <span>Confirmar Download Oficial (Grátis)</span>
+      </button>
+      <div style="font-size: 0.75rem; color: var(--text-dim);">
+        Verificado e seguro por COprivacy • Livre de anúncios e rastreadores.
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
