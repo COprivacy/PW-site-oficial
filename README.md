@@ -19,7 +19,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Status-100%25%20Online-brightgreen?style=for-the-badge" alt="Status">
   <img src="https://img.shields.io/badge/Versao-2.4.0-8b5cf6?style=for-the-badge" alt="Versão">
-  <img src="https://img.shields.io/badge/COprivacy-Verificado-38bdf8?style=for-the-badge" alt="COprivacy">
+  <img src="https://img.shields.io/badge/SSL%2FTLS%201.3-256--Bit-10b981?style=for-the-badge" alt="SSL/TLS 1.3">
   <img src="https://img.shields.io/badge/Licenca-MIT-purple?style=for-the-badge" alt="MIT">
 </p>
 
@@ -29,7 +29,7 @@
 
 O **PW** é uma plataforma moderna no estilo Discord com tema exclusivo em **Preto Profundo, Roxo Neon e Vermelho Carmesim**, criada especialmente para comunidades de games, grupos de estudos e amigos que desejam um ambiente rápido, leve e sem propagandas.
 
-Construído sob a iniciativa **[COprivacy](https://github.com/COprivacy)**, o PW coloca a privacidade do usuário em primeiro lugar, oferecendo servidores criptografados e sem comercialização de dados pessoais.
+Construído com foco em segurança com **Certificado SSL/TLS 1.3 de 256-Bits (Let's Encrypt / GitHub Secure)**, o PW coloca a privacidade do usuário em primeiro lugar, oferecendo servidores criptografados e sem comercialização de dados pessoais. Mantido por **[COprivacy](https://github.com/COprivacy)**.
 
 ---
 
