@@ -27,7 +27,7 @@
 
 ## Sobre o PW
 
-O **PW** é uma plataforma moderna no estilo Discord com tema cyber neon roxo, criada especialmente para comunidades de games, grupos de estudos e amigos que desejam um ambiente rápido, leve e sem propagandas.
+O **PW** é uma plataforma moderna no estilo Discord com tema exclusivo em **Preto Profundo, Roxo Neon e Vermelho Carmesim**, criada especialmente para comunidades de games, grupos de estudos e amigos que desejam um ambiente rápido, leve e sem propagandas.
 
 Construído sob a iniciativa **[COprivacy](https://github.com/COprivacy)**, o PW coloca a privacidade do usuário em primeiro lugar, oferecendo servidores criptografados e sem comercialização de dados pessoais.
 
@@ -99,6 +99,7 @@ Para publicar este site no seu repositório oficial do GitHub:
 ## Testando Localmente
 
 Para abrir o site no seu computador:
+
 1. Dê um duplo clique no arquivo `index.html` para abrir diretamente no navegador.
 2. Ou inicie um servidor local leve:
    ```bash

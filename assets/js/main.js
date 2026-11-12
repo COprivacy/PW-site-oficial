@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alpha: Math.random() * 0.7 + 0.3,
         speedX: (Math.random() - 0.5) * 0.4,
         speedY: (Math.random() - 0.5) * 0.4,
-        color: Math.random() > 0.4 ? '#a855f7' : (Math.random() > 0.5 ? '#38bdf8' : '#ffffff')
+        color: Math.random() > 0.5 ? '#ef4444' : (Math.random() > 0.35 ? '#a855f7' : '#ffffff')
       });
     }
 
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (dist < 110) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(168, 85, 247, ${0.18 * (1 - dist / 110)})`;
+            ctx.strokeStyle = `rgba(239, 68, 68, ${0.14 * (1 - dist / 110)})`;
             ctx.lineWidth = 0.8;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);

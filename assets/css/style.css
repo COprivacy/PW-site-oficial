@@ -8,31 +8,37 @@
   --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
-  /* Cores Base */
-  --bg-darker: #07030c;
-  --bg-main: #0d0718;
-  --bg-card: #140d24;
-  --bg-card-hover: #1c1333;
-  --bg-glass: rgba(20, 13, 36, 0.75);
-  --border-color: rgba(168, 85, 247, 0.18);
-  --border-color-glow: rgba(168, 85, 247, 0.45);
+  /* Cores Base - Preto Profundo Onyx & Obsidiana */
+  --bg-darker: #040106;
+  --bg-main: #09040d;
+  --bg-card: #0f0717;
+  --bg-card-hover: #180b24;
+  --bg-glass: rgba(15, 7, 23, 0.82);
+  --border-color: rgba(168, 85, 247, 0.2);
+  --border-color-glow: rgba(239, 68, 68, 0.45);
 
-  /* Discord Mockup Cores */
-  --discord-guild-bg: #090510;
-  --discord-channel-bg: #110a1f;
-  --discord-chat-bg: #160e29;
-  --discord-members-bg: #120a20;
+  /* Discord Mockup Cores (Preto Gamer com Realce Roxo & Vermelho) */
+  --discord-guild-bg: #050208;
+  --discord-channel-bg: #0d0615;
+  --discord-chat-bg: #12091c;
+  --discord-members-bg: #0a0412;
   --discord-hover: rgba(255, 255, 255, 0.06);
-  --discord-active: rgba(168, 85, 247, 0.22);
+  --discord-active: rgba(239, 68, 68, 0.18);
   
-  /* Paleta Neon & Marca PW */
+  /* Paleta Preto, Roxo e Vermelho (Identidade PW Gamer) */
   --pw-purple: #8b5cf6;
   --pw-purple-glow: #a855f7;
   --pw-purple-light: #c084fc;
   --pw-deep: #6d28d9;
   --pw-dark: #4c1d95;
-  --pw-cyan: #38bdf8;
-  --pw-pink: #ec4899;
+
+  /* Vermelho Carmesim de Ação e Energia */
+  --pw-red: #ef4444;
+  --pw-red-glow: #f87171;
+  --pw-red-dark: #b91c1c;
+  --pw-red-deep: #7f1d1d;
+
+  /* Status */
   --pw-online: #22c55e;
   --pw-idle: #f59e0b;
   --pw-dnd: #ef4444;
@@ -45,9 +51,10 @@
 
   /* Sombras & Brilhos */
   --glow-purple: 0 0 35px rgba(168, 85, 247, 0.35);
-  --glow-button: 0 0 25px rgba(139, 92, 246, 0.5);
-  --glow-text: 0 0 18px rgba(192, 132, 252, 0.6);
-  --shadow-card: 0 15px 35px -5px rgba(0, 0, 0, 0.6);
+  --glow-red: 0 0 30px rgba(239, 68, 68, 0.4);
+  --glow-button: 0 0 25px rgba(239, 68, 68, 0.5);
+  --glow-text: 0 0 18px rgba(248, 113, 113, 0.6);
+  --shadow-card: 0 15px 35px -5px rgba(0, 0, 0, 0.8);
   
   /* Layout */
   --radius-sm: 8px;
@@ -75,7 +82,7 @@ html {
 
 body {
   font-family: var(--font-main);
-  background: radial-gradient(circle at 50% 0%, #200e3b 0%, #0d0718 45%, #07030c 100%);
+  background: radial-gradient(circle at 50% 0%, #200518 0%, #0d0413 40%, #040106 100%);
   color: var(--text-light);
   line-height: 1.6;
   min-height: 100vh;
@@ -92,11 +99,11 @@ body {
   background: var(--bg-darker);
 }
 ::-webkit-scrollbar-thumb {
-  background: #3b2263;
+  background: #3d0d2b;
   border-radius: var(--radius-full);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--pw-purple);
+  background: var(--pw-red);
 }
 
 /* Utilitários de Ícones SVG Profissionais */
@@ -221,14 +228,21 @@ img {
 
 /* Efeito de Texto Gradiente Neon */
 .gradient-text {
-  background: linear-gradient(135deg, #ffffff 10%, #d8b4fe 50%, #c084fc 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #fca5a5 35%, #ef4444 70%, #c084fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
 }
 
 .gradient-text-purple {
-  background: linear-gradient(135deg, #c084fc 0%, #a855f7 50%, #7c3aed 100%);
+  background: linear-gradient(135deg, #ef4444 0%, #c084fc 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.gradient-text-red {
+  background: linear-gradient(135deg, #fca5a5 0%, #ef4444 50%, #b91c1c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -248,12 +262,12 @@ img {
 }
 
 .site-header.scrolled {
-  background: rgba(13, 7, 24, 0.88);
+  background: rgba(4, 1, 6, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid rgba(239, 68, 68, 0.25);
   padding: 0.75rem 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
 .nav-container {
@@ -278,14 +292,14 @@ img {
   height: 44px;
   border-radius: 12px;
   object-fit: cover;
-  box-shadow: 0 0 15px rgba(168, 85, 247, 0.45);
-  border: 1.5px solid rgba(192, 132, 252, 0.5);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+  border: 1.5px solid rgba(239, 68, 68, 0.45);
   transition: var(--transition);
 }
 
 .brand:hover .brand-logo-img {
   transform: rotate(-6deg) scale(1.06);
-  box-shadow: 0 0 25px rgba(168, 85, 247, 0.7);
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.6), 0 0 15px rgba(168, 85, 247, 0.5);
 }
 
 .brand-text {
@@ -421,30 +435,30 @@ img {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #6d28d9 100%);
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 35%, #7c3aed 75%, #6d28d9 100%);
   color: #ffffff;
-  box-shadow: 0 4px 20px rgba(147, 51, 234, 0.45);
-  border: 1px solid rgba(216, 180, 254, 0.3);
+  box-shadow: 0 4px 22px rgba(239, 68, 68, 0.45);
+  border: 1px solid rgba(254, 202, 202, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 28px rgba(168, 85, 247, 0.65);
-  background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 50%, #7c3aed 100%);
+  box-shadow: 0 6px 30px rgba(239, 68, 68, 0.65), 0 0 20px rgba(168, 85, 247, 0.5);
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 35%, #8b5cf6 75%, #7c3aed 100%);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
   color: var(--text-white);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.25);
   backdrop-filter: blur(8px);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.16);
-  border-color: rgba(192, 132, 252, 0.5);
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.5);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .btn-glow {
@@ -458,7 +472,7 @@ img {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, #a855f7, #ec4899, #38bdf8, #a855f7);
+  background: linear-gradient(45deg, #ef4444, #a855f7, #dc2626, #7c3aed);
   background-size: 300%;
   border-radius: var(--radius-full);
   z-index: -1;
@@ -511,12 +525,13 @@ img {
 .hero-glow-1 {
   top: 5%;
   right: -5%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, rgba(4, 1, 6, 0) 70%);
 }
 
 .hero-glow-2 {
   top: 30%;
   left: -10%;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(13, 7, 24, 0) 70%);
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.22) 0%, rgba(4, 1, 6, 0) 70%);
 }
 
 .hero-grid {
@@ -534,15 +549,15 @@ img {
   align-items: center;
   gap: 0.5rem;
   padding: 0.4rem 1rem;
-  background: rgba(168, 85, 247, 0.12);
-  border: 1px solid rgba(168, 85, 247, 0.3);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.35);
   border-radius: var(--radius-full);
-  color: var(--pw-purple-light);
+  color: var(--pw-red-glow);
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.03em;
   margin-bottom: 1.3rem;
-  box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.25);
 }
 
 .hero-title {
@@ -640,9 +655,9 @@ img {
 .mascot-frame-inner {
   position: relative;
   border-radius: 28px;
-  background: linear-gradient(160deg, rgba(168, 85, 247, 0.2) 0%, rgba(20, 13, 36, 0.8) 100%);
-  border: 2px solid rgba(192, 132, 252, 0.35);
-  box-shadow: var(--shadow-card), 0 0 50px rgba(168, 85, 247, 0.3);
+  background: linear-gradient(160deg, rgba(239, 68, 68, 0.15) 0%, rgba(139, 92, 246, 0.18) 50%, rgba(10, 4, 16, 0.95) 100%);
+  border: 2px solid rgba(239, 68, 68, 0.35);
+  box-shadow: var(--shadow-card), 0 0 50px rgba(168, 85, 247, 0.25), 0 0 30px rgba(239, 68, 68, 0.25);
   padding: 10px;
   transition: transform 0.2s ease-out;
   transform-style: preserve-3d;
@@ -659,13 +674,13 @@ img {
 /* Floating Badges no Mascote */
 .mascot-badge {
   position: absolute;
-  background: rgba(17, 10, 31, 0.85);
+  background: rgba(10, 4, 16, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(192, 132, 252, 0.35);
+  border: 1px solid rgba(239, 68, 68, 0.32);
   padding: 0.65rem 1rem;
   border-radius: var(--radius-md);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(168, 85, 247, 0.25);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(239, 68, 68, 0.2);
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -900,8 +915,8 @@ img {
 
 .guild-item:hover, .guild-item.active {
   border-radius: 16px;
-  background: var(--pw-purple);
-  box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+  background: linear-gradient(135deg, #ef4444 0%, #8b5cf6 100%);
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.5);
 }
 
 .guild-item.active::before {
@@ -910,7 +925,8 @@ img {
   left: 0;
   width: 4px;
   height: 38px;
-  background: #fff;
+  background: var(--pw-red);
+  box-shadow: 0 0 8px var(--pw-red);
   border-radius: 0 4px 4px 0;
 }
 
@@ -983,9 +999,10 @@ img {
 }
 
 .channel-btn.active {
-  background: var(--discord-active);
+  background: rgba(239, 68, 68, 0.16);
   color: #fff;
   font-weight: 700;
+  border-left: 2px solid var(--pw-red);
 }
 
 .channel-btn svg {
@@ -995,7 +1012,7 @@ img {
 
 .channel-btn.active svg {
   opacity: 1;
-  color: var(--pw-purple-light);
+  color: var(--pw-red-glow);
 }
 
 .voice-count {
@@ -1523,11 +1540,11 @@ img {
 }
 
 .feature-card-glow {
-  background: linear-gradient(145deg, rgba(28, 17, 51, 0.75) 0%, rgba(13, 7, 24, 0.95) 100%);
-  border: 1px solid var(--border-color);
+  background: linear-gradient(145deg, rgba(20, 7, 30, 0.85) 0%, rgba(6, 2, 10, 0.98) 100%);
+  border: 1px solid rgba(239, 68, 68, 0.25);
   border-radius: var(--radius-lg);
   padding: 2.2rem;
-  box-shadow: var(--shadow-card), 0 0 40px rgba(139, 92, 246, 0.15);
+  box-shadow: var(--shadow-card), 0 0 40px rgba(239, 68, 68, 0.15), 0 0 25px rgba(139, 92, 246, 0.15);
   position: relative;
   overflow: hidden;
 }
@@ -1539,7 +1556,7 @@ img {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #9333ea, #c084fc, #38bdf8);
+  background: linear-gradient(90deg, #ef4444, #a855f7, #dc2626);
 }
 
 /* Card Mascote Spotlight */
@@ -1570,7 +1587,7 @@ img {
    ========================================================================== */
 .benefits-section {
   padding: 5.5rem 0;
-  background: radial-gradient(circle at 50% 50%, rgba(32, 14, 59, 0.4) 0%, rgba(7, 3, 12, 0) 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(35, 8, 25, 0.45) 0%, rgba(4, 1, 6, 0) 70%);
   position: relative;
 }
 
@@ -1582,9 +1599,9 @@ img {
 }
 
 .benefit-card {
-  background: rgba(20, 13, 36, 0.65);
+  background: rgba(15, 7, 23, 0.75);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.2);
   border-radius: var(--radius-md);
   padding: 2rem;
   transition: var(--transition);
@@ -1594,21 +1611,21 @@ img {
 
 .benefit-card:hover {
   transform: translateY(-5px);
-  border-color: var(--border-color-glow);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(168, 85, 247, 0.2);
-  background: rgba(28, 19, 51, 0.85);
+  border-color: rgba(239, 68, 68, 0.6);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(239, 68, 68, 0.3);
+  background: rgba(24, 10, 36, 0.95);
 }
 
 .benefit-icon {
   width: 52px;
   height: 52px;
   border-radius: 14px;
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.25) 0%, rgba(124, 58, 237, 0.1) 100%);
-  border: 1px solid rgba(192, 132, 252, 0.3);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(124, 58, 237, 0.15) 100%);
+  border: 1px solid rgba(239, 68, 68, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--pw-purple-light);
+  color: var(--pw-red-glow);
   margin-bottom: 1.3rem;
   font-size: 1.4rem;
 }
@@ -1621,9 +1638,9 @@ img {
 }
 
 .benefit-card:hover .benefit-icon {
-  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #ef4444 0%, #7c3aed 100%);
   color: #fff;
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
 }
 
 .benefit-title {
@@ -1673,9 +1690,9 @@ img {
 }
 
 .download-card.highlight {
-  background: linear-gradient(160deg, rgba(32, 16, 61, 0.9) 0%, rgba(17, 10, 31, 0.95) 100%);
-  border-color: var(--pw-purple-glow);
-  box-shadow: 0 0 25px rgba(168, 85, 247, 0.25);
+  background: linear-gradient(160deg, rgba(35, 9, 25, 0.95) 0%, rgba(12, 5, 20, 0.98) 100%);
+  border-color: rgba(239, 68, 68, 0.5);
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
 }
 
 .download-platform-icon {
@@ -1781,13 +1798,14 @@ img {
 }
 
 .cta-banner {
-  background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #9333ea 100%);
+  background: linear-gradient(135deg, #180518 0%, #4c1d95 35%, #991b1b 75%, #ef4444 100%);
   border-radius: var(--radius-lg);
   padding: 4.5rem 3rem;
   text-align: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 20px 50px rgba(239, 68, 68, 0.35), 0 0 40px rgba(139, 92, 246, 0.25);
+  border: 1px solid rgba(239, 68, 68, 0.35);
 }
 
 .cta-banner::before {
