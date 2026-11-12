@@ -78,21 +78,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Controle de Mute / Som
+  // Controle de Mute / Som (Botão Circular Compacto)
   const soundToggleBtn = document.getElementById('soundToggleBtn');
   function updateSoundUI() {
     if (!soundToggleBtn) return;
     if (isSoundMuted) {
       soundToggleBtn.classList.add('muted');
+      soundToggleBtn.setAttribute('title', 'Som: Mudo (Clique para ativar)');
+      soundToggleBtn.setAttribute('aria-label', 'Som: Mudo (Clique para ativar)');
       soundToggleBtn.innerHTML = `
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-        <span>Mudo</span>
+        <svg class="pw-icon pw-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
       `;
     } else {
       soundToggleBtn.classList.remove('muted');
+      soundToggleBtn.setAttribute('title', 'Som: Ativo (Clique para silenciar)');
+      soundToggleBtn.setAttribute('aria-label', 'Som: Ativo (Clique para silenciar)');
       soundToggleBtn.innerHTML = `
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-        <span>Som: Ativo</span>
+        <svg class="pw-icon pw-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
       `;
     }
   }
@@ -339,9 +341,6 @@ document.addEventListener('DOMContentLoaded', () => {
           text: 'Tocando agora no canal <strong>Música & Resenha</strong>: Synthwave Lofi Beats (Ao Vivo) • [00:00 / 03:45]',
           reactions: [{ type: 'music', count: 7 }]
         }
-      ]
-    }
-  };
       ]
     }
   };
