@@ -545,15 +545,85 @@
           </ul>
         </div>
         <div class="feature-visual">
-          <div class="feature-card-glow">
-            <h3 style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 1rem;">Gaming Stream Dashboard</h3>
-            <div style="background: rgba(10, 5, 18, 0.85); border-radius: 12px; padding: 1.2rem; border: 1px solid rgba(255,255,255,0.08); text-align: center;">
-              <div style="position: relative; border-radius: 8px; overflow: hidden; margin-bottom: 0.8rem; background: #000; height: 140px; display: flex; align-items: center; justify-content: center;">
-                <svg class="pw-icon pw-icon-purple" style="width: 48px; height: 48px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M6 12h4m-2-2v4m9-3h.01m3 2h.01"></path></svg>
-                <span style="position: absolute; top: 8px; left: 8px; background: #ef4444; color: #fff; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 4px;">AO VIVO • 1080p60</span>
-                <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: 0.7rem; padding: 0.15rem 0.4rem; border-radius: 4px;">FPS: 60 • Bitrate: 6.5 Mbps</span>
+          <div class="feature-card-glow stream-dashboard-card">
+            <!-- Cabeçalho do Dashboard de Stream -->
+            <div class="stream-dashboard-header">
+              <div class="stream-header-left">
+                <span class="stream-live-pill">
+                  <span class="live-pulse-dot"></span>
+                  AO VIVO • 1080p60
+                </span>
+                <span class="stream-title">Gaming Stream Dashboard</span>
               </div>
-              <span style="font-size: 0.85rem; color: #fff; font-weight: 600;">Transmitindo: Valorant Ranked match</span>
+              <div class="stream-voice-speakers" title="Usuários na sala de voz conversando">
+                <div class="voice-speaker-avatar speaking" id="streamSpeaker1" title="Gamer #1 (Falando...)">
+                  <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=60&h=60&fit=crop&crop=faces" alt="Avatar Gamer">
+                </div>
+                <div class="voice-speaker-avatar" id="streamSpeaker2" title="Gamer #2">
+                  <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=60&h=60&fit=crop&crop=faces" alt="Avatar Gamer">
+                </div>
+                <div class="voice-speaker-count">+4</div>
+              </div>
+            </div>
+
+            <!-- Player de Vídeo Interativo (10s Loop Autoplay) -->
+            <div class="stream-player-wrapper" id="streamPlayerWrapper">
+              <video 
+                id="streamDemoVideo" 
+                class="stream-video" 
+                poster="assets/images/stream-poster.jpg" 
+                autoplay 
+                loop 
+                muted 
+                playsinline 
+                preload="metadata"
+              >
+                <source src="assets/videos/stream-demo.mp4" type="video/mp4">
+                <source src="assets/videos/stream-demo.webm" type="video/webm">
+                Seu navegador não suporta a tag de vídeo.
+              </video>
+
+              <!-- Overlay HUD Gamer & Controles Interativos -->
+              <div class="stream-controls-overlay" id="streamControlsOverlay">
+                <!-- Botão Central Play (quando pausado) -->
+                <button class="stream-big-play-btn" id="streamBigPlayBtn" aria-label="Reproduzir Vídeo" style="display: none;">
+                  <svg class="pw-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+
+                <!-- Barra Inferior de Controles -->
+                <div class="stream-bottom-bar">
+                  <div class="stream-bar-left">
+                    <button class="stream-btn" id="streamPlayToggle" title="Pausar / Reproduzir" aria-label="Pausar ou Reproduzir">
+                      <svg class="pw-icon pw-icon-sm icon-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                      <svg class="pw-icon pw-icon-sm icon-play" viewBox="0 0 24 24" fill="currentColor" style="display: none;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    </button>
+                    <button class="stream-btn" id="streamMuteToggle" title="Ativar Áudio da Live" aria-label="Ativar ou Silenciar Som">
+                      <svg class="pw-icon pw-icon-sm icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+                      <svg class="pw-icon pw-icon-sm icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                    </button>
+                    <span class="stream-status-text">AO VIVO: Campeonato PW Ranked</span>
+                  </div>
+
+                  <div class="stream-bar-right">
+                    <span class="stream-stats-badge">60 FPS • 6.8 Mbps</span>
+                    <button class="stream-btn" id="streamFullscreenBtn" title="Tela Cheia" aria-label="Modo Tela Cheia">
+                      <svg class="pw-icon pw-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rodapé do Card com Meta Informações -->
+            <div class="stream-dashboard-footer">
+              <div class="stream-footer-info">
+                <span class="stream-tag-dot"></span>
+                <span>Transmitindo: <strong>Allied Forces Esports • 1080p 60fps</strong></span>
+              </div>
+              <span class="stream-viewers-count">
+                <svg class="pw-icon pw-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                1.420 assistindo
+              </span>
             </div>
           </div>
         </div>

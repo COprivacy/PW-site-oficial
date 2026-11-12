@@ -694,5 +694,117 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // ----------------------------------------------------
+  // 9. Gaming Stream Dashboard - Player Interativo (10s Loop)
+  // ----------------------------------------------------
+  const streamVideo = document.getElementById('streamDemoVideo');
+  const streamWrapper = document.getElementById('streamPlayerWrapper');
+  const streamPlayToggle = document.getElementById('streamPlayToggle');
+  const streamMuteToggle = document.getElementById('streamMuteToggle');
+  const streamBigPlayBtn = document.getElementById('streamBigPlayBtn');
+  const streamFullscreenBtn = document.getElementById('streamFullscreenBtn');
+  const streamSpeaker1 = document.getElementById('streamSpeaker1');
+  const streamSpeaker2 = document.getElementById('streamSpeaker2');
+
+  if (streamVideo && streamWrapper) {
+    const iconPause = streamPlayToggle ? streamPlayToggle.querySelector('.icon-pause') : null;
+    const iconPlay = streamPlayToggle ? streamPlayToggle.querySelector('.icon-play') : null;
+    const iconMuted = streamMuteToggle ? streamMuteToggle.querySelector('.icon-muted') : null;
+    const iconUnmuted = streamMuteToggle ? streamMuteToggle.querySelector('.icon-unmuted') : null;
+
+    function updatePlayState(isPlaying) {
+      if (isPlaying) {
+        streamWrapper.classList.remove('paused');
+        if (streamBigPlayBtn) streamBigPlayBtn.style.display = 'none';
+        if (iconPause) iconPause.style.display = 'block';
+        if (iconPlay) iconPlay.style.display = 'none';
+        if (streamPlayToggle) streamPlayToggle.title = 'Pausar Transmissão';
+      } else {
+        streamWrapper.classList.add('paused');
+        if (streamBigPlayBtn) streamBigPlayBtn.style.display = 'flex';
+        if (iconPause) iconPause.style.display = 'none';
+        if (iconPlay) iconPlay.style.display = 'block';
+        if (streamPlayToggle) streamPlayToggle.title = 'Reproduzir Transmissão';
+      }
+    }
+
+    function togglePlay(e) {
+      if (e) e.stopPropagation();
+      playSound('click');
+      if (streamVideo.paused) {
+        streamVideo.play();
+        updatePlayState(true);
+      } else {
+        streamVideo.pause();
+        updatePlayState(false);
+      }
+    }
+
+    function toggleMute(e) {
+      if (e) e.stopPropagation();
+      streamVideo.muted = !streamVideo.muted;
+      if (streamVideo.muted) {
+        if (iconMuted) iconMuted.style.display = 'block';
+        if (iconUnmuted) iconUnmuted.style.display = 'none';
+        if (streamMuteToggle) streamMuteToggle.title = 'Ativar Áudio da Live';
+        playSound('click');
+      } else {
+        if (iconMuted) iconMuted.style.display = 'none';
+        if (iconUnmuted) iconUnmuted.style.display = 'block';
+        if (streamMuteToggle) streamMuteToggle.title = 'Silenciar Áudio';
+        playSound('toggle-on');
+      }
+    }
+
+    function toggleFullscreen(e) {
+      if (e) e.stopPropagation();
+      playSound('click');
+      if (!document.fullscreenElement) {
+        if (streamWrapper.requestFullscreen) {
+          streamWrapper.requestFullscreen();
+        } else if (streamVideo.requestFullscreen) {
+          streamVideo.requestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    if (streamPlayToggle) streamPlayToggle.addEventListener('click', togglePlay);
+    if (streamBigPlayBtn) streamBigPlayBtn.addEventListener('click', togglePlay);
+    if (streamWrapper) {
+      streamWrapper.addEventListener('click', (e) => {
+        if (e.target === streamVideo || e.target === streamWrapper) {
+          togglePlay(e);
+        }
+      });
+    }
+
+    if (streamMuteToggle) streamMuteToggle.addEventListener('click', toggleMute);
+    if (streamFullscreenBtn) streamFullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    streamVideo.addEventListener('play', () => updatePlayState(true));
+    streamVideo.addEventListener('pause', () => updatePlayState(false));
+
+    // Animação dos Avatares de Voz (Simulação de conversa em grupo no PW Voice)
+    if (streamSpeaker1 && streamSpeaker2) {
+      setInterval(() => {
+        if (Math.random() > 0.45) {
+          streamSpeaker1.classList.toggle('speaking');
+          if (streamSpeaker1.classList.contains('speaking')) {
+            streamSpeaker2.classList.remove('speaking');
+          }
+        } else {
+          streamSpeaker2.classList.toggle('speaking');
+          if (streamSpeaker2.classList.contains('speaking')) {
+            streamSpeaker1.classList.remove('speaking');
+          }
+        }
+      }, 2400);
+    }
+  }
 });
 
