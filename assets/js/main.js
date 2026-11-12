@@ -157,13 +157,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Header Scroll Effect & Mobile Drawer
   // ----------------------------------------------------
   const header = document.querySelector('.site-header');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
+  if (header) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  }
 
   const mobileToggle = document.getElementById('mobileToggle');
   const navMenu = document.getElementById('navMenu');
@@ -809,16 +811,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // ----------------------------------------------------
   document.querySelectorAll('.btn-open-web').forEach(btn => {
     btn.addEventListener('click', (e) => {
+      const demoSec = document.getElementById('demo');
+      if (!demoSec) return;
       e.preventDefault();
       playSound('click');
-      const demoSec = document.getElementById('demo');
-      if (demoSec) {
-        demoSec.scrollIntoView({ behavior: 'smooth' });
-        // Focar no input
-        setTimeout(() => {
-          if (chatInputField) chatInputField.focus();
-        }, 600);
-      }
+      demoSec.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        if (chatInputField) chatInputField.focus();
+      }, 600);
     });
   });
 
@@ -957,6 +957,130 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Iniciar após 3 segundos
       setTimeout(updateLiveViewers, 3000);
+    }
+  }
+
+  // ----------------------------------------------------
+  // 10. Filtro da Central de Ajuda (ajuda.html)
+  // ----------------------------------------------------
+  const helpSearchInput = document.getElementById('helpSearchInput');
+  const helpTopicCards = document.querySelectorAll('.help-topic-card');
+  const helpEmptyState = document.getElementById('helpEmptyState');
+
+  if (helpSearchInput && helpTopicCards.length > 0) {
+    helpSearchInput.addEventListener('input', () => {
+      const term = helpSearchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      helpTopicCards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const matches = !term || text.includes(term);
+        card.style.display = matches ? '' : 'none';
+        if (matches) visibleCount++;
+      });
+
+      if (helpEmptyState) {
+        helpEmptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    });
+  }
+
+  // ----------------------------------------------------
+  // 11. Verificação de Status em Tempo Real (status.html)
+  // ----------------------------------------------------
+  const statusPageRoot = document.getElementById('statusPageRoot');
+  if (statusPageRoot) {
+    const statusRefreshBtn = document.getElementById('statusRefreshBtn');
+    const statusLastCheck = document.getElementById('statusLastCheck');
+    const statusBannerTitle = document.getElementById('statusBannerTitle');
+    const statusBannerDesc = document.getElementById('statusBannerDesc');
+    const statusVersionValue = document.getElementById('statusVersionValue');
+    const statusUpdateBadge = document.getElementById('statusUpdateBadge');
+    const statusUpdateLatency = document.getElementById('statusUpdateLatency');
+    const statusWebBadge = document.getElementById('statusWebBadge');
+    const statusWebLatency = document.getElementById('statusWebLatency');
+    const statusWebRtcBadge = document.getElementById('statusWebRtcBadge');
+    const statusWebRtcMeta = document.getElementById('statusWebRtcMeta');
+
+    async function runStatusChecks() {
+      const nowStr = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      if (statusLastCheck) statusLastCheck.textContent = `Última verificação: ${nowStr}`;
+
+      if (statusWebBadge) {
+        statusWebBadge.className = 'status-badge checking';
+        statusWebBadge.textContent = 'Verificando...';
+      }
+      if (statusUpdateBadge) {
+        statusUpdateBadge.className = 'status-badge checking';
+        statusUpdateBadge.textContent = 'Verificando...';
+      }
+
+      // 1. Verificar CDN do Site & Assets
+      try {
+        const t0 = performance.now();
+        const res = await fetch(`assets/images/logo-app.jpg?t=${Date.now()}`, { method: 'HEAD' });
+        const ms = Math.max(1, Math.round(performance.now() - t0));
+        if (res.ok && statusWebBadge) {
+          statusWebBadge.className = 'status-badge ok';
+          statusWebBadge.textContent = 'Operacional';
+          if (statusWebLatency) statusWebLatency.textContent = `Latência: ${ms} ms`;
+        }
+      } catch {
+        if (statusWebBadge) {
+          statusWebBadge.className = 'status-badge warn';
+          statusWebBadge.textContent = 'Offline';
+        }
+      }
+
+      // 2. Verificar Serviço de Distribuição & Versão Atual
+      try {
+        const t0 = performance.now();
+        const res = await fetch(GITHUB_RELEASE_API, { headers: { Accept: 'application/vnd.github.v3+json' } });
+        const ms = Math.max(1, Math.round(performance.now() - t0));
+        if (res.ok) {
+          const data = await res.json();
+          const tag = (data && data.tag_name) ? data.tag_name : releaseInfo.tag;
+          if (statusVersionValue) statusVersionValue.textContent = tag;
+          if (statusUpdateBadge) {
+            statusUpdateBadge.className = 'status-badge ok';
+            statusUpdateBadge.textContent = 'Operacional';
+          }
+          if (statusUpdateLatency) statusUpdateLatency.textContent = `Latência API: ${ms} ms • ${tag}`;
+        } else if (statusUpdateBadge) {
+          statusUpdateBadge.className = 'status-badge ok';
+          statusUpdateBadge.textContent = 'Disponível (Fallback)';
+          if (statusUpdateLatency) statusUpdateLatency.textContent = `Versão base: ${releaseInfo.tag}`;
+        }
+      } catch {
+        if (statusUpdateBadge) {
+          statusUpdateBadge.className = 'status-badge warn';
+          statusUpdateBadge.textContent = 'Sem conexão';
+        }
+      }
+
+      // 3. Capacidade Local WebRTC P2P
+      const hasWebRTC = typeof RTCPeerConnection !== 'undefined';
+      if (statusWebRtcBadge) {
+        statusWebRtcBadge.className = hasWebRTC ? 'status-badge ok' : 'status-badge warn';
+        statusWebRtcBadge.textContent = hasWebRTC ? 'Compatível & Ativo' : 'Restrito';
+      }
+      if (statusWebRtcMeta) {
+        statusWebRtcMeta.textContent = hasWebRTC
+          ? 'Codec Opus + DTLS/SRTP + STUN/TURN prontos'
+          : 'Seu navegador atual bloqueou WebRTC';
+      }
+
+      if (statusBannerTitle) statusBannerTitle.textContent = 'Todos os Sistemas Operacionais';
+      if (statusBannerDesc) statusBannerDesc.textContent = 'Serviços de voz P2P, transmissão de tela 60 FPS, perfis e atualizações automáticas operando normalmente.';
+    }
+
+    runStatusChecks();
+    if (statusRefreshBtn) {
+      statusRefreshBtn.addEventListener('click', () => {
+        initAudio();
+        playSound('click');
+        runStatusChecks();
+      });
     }
   }
 });

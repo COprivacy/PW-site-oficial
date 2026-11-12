@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transparência &amp; Segurança | PW - Conversar, jogar e fazer amizades</title>
+  <meta name="description" content="Relatório técnico de transparência do PW Desktop: o que fica no seu PC, permissões do sistema, comunicação WebRTC P2P e verificação de integridade.">
+  <meta name="author" content="Pavisoft Sistemas">
+  <meta name="theme-color" content="#040106">
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <canvas id="starsCanvas"></canvas>
+
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <img src="assets/images/logo-app.jpg" alt="Logo PW" class="brand-logo-img">
+        <div class="brand-text">
+          <span class="brand-title">PW <span class="gradient-text-purple">Oficial</span></span>
+          <span class="brand-tag">Conversar, Jogar &amp; Amigos</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#inicio" class="nav-link">Início</a></li>
+        <li><a href="index.html#recursos" class="nav-link">Recursos</a></li>
+        <li><a href="index.html#demo" class="nav-link">Simulador Web</a></li>
+        <li><a href="index.html#mascote" class="nav-link">Mascote</a></li>
+        <li><a href="index.html#vantagens" class="nav-link">Vantagens</a></li>
+        <li><a href="index.html#baixar" class="nav-link">Baixar</a></li>
+        <li><a href="ajuda.html" class="nav-link">Ajuda</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="soundToggleBtn" class="sound-toggle-btn" title="Som: Ativo (Clique para silenciar)" aria-label="Alternar Efeitos Sonoros">
+          <svg class="pw-icon pw-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+        </button>
+        <a href="index.html#demo" class="btn btn-secondary btn-sm btn-open-web">Abrir no Navegador</a>
+        <a href="index.html#baixar" class="btn btn-primary btn-sm btn-glow">Baixar Grátis</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="subpage-hero">
+    <div class="container">
+      <div class="subpage-breadcrumb">
+        <a href="index.html">Início</a>
+        <span>/</span>
+        <span>Transparência</span>
+      </div>
+      <div class="section-pill">ARQUITETURA ABERTA</div>
+      <h1 class="subpage-title">Transparência do PW</h1>
+      <p class="subpage-subtitle">
+        Acreditamos que confiança se constrói mostrando exatamente como o programa funciona no seu computador. Veja todas as permissões, armazenamentos locais e protocolos de rede utilizados pelo PW.
+      </p>
+      <div class="subpage-meta-bar">
+        <span>Plataforma: PW Desktop Windows (x64) &amp; Web</span>
+        <span>•</span>
+        <span>Desenvolvido por: Pavisoft Sistemas</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="subpage-content">
+    <div class="container doc-layout">
+      <aside class="doc-sidebar">
+        <div class="doc-sidebar-title">Resumo Técnico</div>
+        <ul class="doc-nav-list">
+          <li><a href="#mapa-dados">1. Onde Cada Dado Fica</a></li>
+          <li><a href="#permissoes">2. Permissões no Windows</a></li>
+          <li><a href="#criptografia">3. Rede e Criptografia</a></li>
+          <li><a href="#integridade">4. Integridade do Executável</a></li>
+        </ul>
+      </aside>
+
+      <div class="doc-main">
+        <article class="doc-card" id="mapa-dados">
+          <h2>1. O Que Fica no Seu PC vs. O Que Vai para a Rede</h2>
+          <p>
+            Diferente de mensageiros que armazenam todo o histórico de conversa e arquivos eternamente em nuvem centralizada, o PW separa claramente dados locais, tráfego em tempo real e autenticação:
+          </p>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Categoria</th>
+                  <th>Onde Fica / Como Trafega</th>
+                  <th>Finalidade</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Perfil &amp; Gamer ID</strong></td>
+                  <td>Banco autenticado com Row Level Security (RLS)</td>
+                  <td>Permitir login, avatar, status e busca de amigos por <code class="doc-code-inline">PW-XXXX</code>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Mensagens &amp; DMs</strong></td>
+                  <td>Efêmero via WebSockets + arquivo local <code class="doc-code-inline">pw-local-database.json</code></td>
+                  <td>Entrega instantânea sem armazenamento permanente do chat na nuvem.</td>
+                </tr>
+                <tr>
+                  <td><strong>Voz &amp; Tela (60 FPS)</strong></td>
+                  <td>Conexão direta WebRTC P2P criptografada (DTLS/SRTP)</td>
+                  <td>Chamadas em baixa latência com fallback TURN apenas quando há bloqueio de rede (CGNAT).</td>
+                </tr>
+                <tr>
+                  <td><strong>Áudio &amp; Volumes</strong></td>
+                  <td>Somente local (navegador / dispositivo do usuário)</td>
+                  <td>Salvar microfone padrão, sensibilidade VAD, Push-to-Talk e volumes individuais (0%–200%).</td>
+                </tr>
+                <tr>
+                  <td><strong>Logs de Estabilidade</strong></td>
+                  <td>Somente local em <code class="doc-code-inline">%APPDATA%\PW\logs\pw.log</code></td>
+                  <td>Diagnóstico técnico sob demanda, com limite e rotação automática a cada 5 MB.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="doc-card" id="permissoes">
+          <h2>2. Permissões Solicitadas no Windows — Tudo Sob Demanda</h2>
+          <ul class="doc-list">
+            <li><strong>Microfone e Câmera:</strong> Acessados exclusivamente quando você entra em uma sala de voz/vídeo ou realiza testes manuais em <em>Voz e Áudio</em>. Ao desconectar da call ou ativar o mudo, o fluxo de captura é encerrado.</li>
+            <li><strong>Captura de Tela e Áudio do Sistema:</strong> A API de captura do Electron (<code class="doc-code-inline">desktopCapturer</code>) lista suas janelas e monitores somente quando você abre a janela de seleção para iniciar uma transmissão.</li>
+            <li><strong>Atalho Global (Push-to-Talk):</strong> Um atalho global do sistema operacional (como <code class="doc-code-inline">Ctrl Esquerdo</code>) só é registrado se você selecionar o modo <em>Push-to-Talk</em> nas configurações de voz — nenhuma digitação comum é monitorada.</li>
+            <li><strong>Inicialização com Windows &amp; Bandeja:</strong> Totalmente configurável dentro do app; se desativado pelo usuário, o programa não inicia em segundo plano no boot do sistema.</li>
+            <li><strong>Detecção de Jogos (Game Activity):</strong> Pode ser ligada ou desligada a qualquer momento nas Configurações para exibir ou ocultar o jogo aberto no seu perfil.</li>
+          </ul>
+        </article>
+
+        <article class="doc-card" id="criptografia">
+          <h2>3. Padrões de Rede, Criptografia e Privacidade</h2>
+          <ul class="doc-list">
+            <li><strong>Transporte Seguro:</strong> Todas as conexões de login, perfis, WebSockets em tempo real e distribuição de atualizações trafegam sobre <strong>HTTPS / WSS (TLS 1.3)</strong>.</li>
+            <li><strong>Chamadas e Transmissões:</strong> O padrão WebRTC aplica criptografia <strong>DTLS e SRTP</strong> em todos os fluxos de áudio e vídeo trocados entre os membros da sala.</li>
+            <li><strong>Zero Rastreamento Comercial:</strong> Não há scripts de publicidade, pixels de remarketing ou compartilhamento de dados com terceiros.</li>
+          </ul>
+        </article>
+
+        <article class="doc-card" id="integridade">
+          <h2>4. Verificação de Integridade &amp; Atualizações Seguras</h2>
+          <p>
+            Cada atualização automática do PW Desktop passa por verificação de assinatura de hash criptográfico <code class="doc-code-inline">SHA-512</code> antes de ser aplicada no Windows, garantindo que o instalador baixado corresponde exatamente à compilação oficial da <strong>Pavisoft Sistemas</strong>.
+          </p>
+          <div class="doc-highlight-box">
+            Quer conferir o histórico de compilações e código público? Visite o perfil oficial no GitHub: <a href="https://github.com/COprivacy" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: underline;">github.com/COprivacy</a>.
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <div class="footer-logo">
+            <img src="assets/images/logo-pw.jpg" alt="Logo PW Oficial">
+            <span class="footer-logo-title">PW</span>
+          </div>
+          <p class="footer-desc">
+            PW - Conversar, jogar e fazer amizades.<br>
+            A nova plataforma de comunicação gamer e comunitária feita para conectar pessoas com segurança total.
+          </p>
+          <div class="footer-socials">
+            <a href="https://github.com/COprivacy/PW-site-oficial" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub Oficial COprivacy">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="index.html#demo" class="social-btn" title="Servidor Oficial PW">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Produto</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#baixar">Baixar para PC</a></li>
+            <li><a href="index.html#demo">Web Client</a></li>
+            <li><a href="index.html#recursos">Salas de Voz HD</a></li>
+            <li><a href="index.html#recursos">Streaming 60 FPS</a></li>
+            <li><a href="status.html">Status do Sistema</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Comunidade</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#demo">Servidor Oficial PW</a></li>
+            <li><a href="index.html#mascote">Mascote &amp; Bots</a></li>
+            <li><a href="diretrizes.html">Diretrizes da Comunidade</a></li>
+            <li><a href="ajuda.html">Central de Ajuda</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Pavisoft Sistemas</h4>
+          <ul class="footer-links">
+            <li><a href="https://github.com/COprivacy" target="_blank" rel="noopener noreferrer">Perfil GitHub</a></li>
+            <li><a href="privacidade.html">Política de Privacidade</a></li>
+            <li><a href="termos.html">Termos de Serviço</a></li>
+            <li><a href="transparencia.html">Transparência</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 <strong>PW - Conversar, jogar e fazer amizades</strong>. Todos os direitos reservados. Desenvolvido por <strong style="color: var(--pw-purple-light); font-weight: 700;">Pavisoft Sistemas</strong>.
+        </div>
+        <div class="footer-bottom-links">
+          <a href="index.html#inicio">Início</a>
+          <a href="index.html#recursos">Recursos</a>
+          <a href="index.html#baixar">Downloads</a>
+          <a href="ajuda.html">Suporte</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
