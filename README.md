@@ -10,15 +10,15 @@
 
 <p align="center">
   <a href="https://coprivacy.github.io/PW-site-oficial/"><strong>Acessar Site Oficial Online</strong></a> •
+  <a href="https://github.com/COprivacy/PW-chat-jogo/releases/latest"><strong>Baixar Aplicativo (GitHub Releases)</strong></a> •
   <a href="#recursos-principais">Recursos</a> •
   <a href="#robo-mascote-oficial">Mascote</a> •
-  <a href="#como-ativar-o-github-pages">GitHub Pages</a> •
   <a href="#licenca">Licença</a>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Status-100%25%20Online-brightgreen?style=for-the-badge" alt="Status">
-  <img src="https://img.shields.io/badge/Versao-2.4.0-8b5cf6?style=for-the-badge" alt="Versão">
+  <img src="https://img.shields.io/github/v/release/COprivacy/PW-chat-jogo?style=for-the-badge&color=8b5cf6&label=Versao" alt="Versão">
   <img src="https://img.shields.io/badge/SSL%2FTLS%201.3-256--Bit-10b981?style=for-the-badge" alt="SSL/TLS 1.3">
   <img src="https://img.shields.io/badge/Licenca-MIT-purple?style=for-the-badge" alt="MIT">
 </p>

@@ -272,6 +272,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   height: 100%;
   width: 100%;
 }
@@ -285,6 +286,8 @@ img {
   font-size: 1.3rem;
   color: var(--text-white);
   letter-spacing: -0.02em;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .brand-logo-img {
@@ -305,6 +308,7 @@ img {
 .brand-text {
   display: flex;
   flex-direction: column;
+  white-space: nowrap;
 }
 
 .brand-title {
@@ -316,6 +320,7 @@ img {
   display: flex;
   align-items: center;
   gap: 0.35rem;
+  white-space: nowrap;
 }
 
 .brand-tag {
@@ -324,6 +329,7 @@ img {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* Nav Menu */
@@ -331,7 +337,7 @@ img {
   display: flex;
   align-items: center;
   list-style: none;
-  gap: 1.4rem;
+  gap: 1.25rem;
 }
 
 .nav-link {
@@ -340,6 +346,7 @@ img {
   color: var(--text-muted);
   position: relative;
   padding: 0.35rem 0;
+  white-space: nowrap;
 }
 
 .nav-link:hover, .nav-link.active {
@@ -366,12 +373,14 @@ img {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
+  flex-shrink: 0;
 }
 
 .nav-actions .btn-sm {
-  padding: 0.45rem 1rem;
+  padding: 0.45rem 0.95rem;
   font-size: 0.82rem;
+  white-space: nowrap;
 }
 
 /* Sound Toggle Button - Ícone Circular Compacto */
@@ -2084,8 +2093,8 @@ img {
 
 .download-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
   margin-top: 3.5rem;
 }
 
@@ -2093,18 +2102,34 @@ img {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 2rem 1.6rem;
+  padding: 2rem 1.35rem;
   text-align: center;
   transition: var(--transition);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.download-card-top,
+.download-card-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .download-card:hover {
   transform: translateY(-6px);
   border-color: var(--pw-purple-glow);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 30px rgba(168, 85, 247, 0.25);
+}
+
+.download-card.download-card-soon:hover {
+  transform: translateY(-2px);
+  border-color: rgba(168, 85, 247, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
 
 .download-card.highlight {
@@ -2124,16 +2149,50 @@ img {
 }
 
 .download-title {
-  font-size: 1.3rem;
+  font-size: 1.22rem;
   font-weight: 800;
   color: #fff;
   margin-bottom: 0.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.coming-soon-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: rgba(139, 92, 246, 0.16);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  color: var(--pw-purple-light);
 }
 
 .download-sub {
   font-size: 0.85rem;
   color: var(--text-muted);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
+}
+
+.download-card .btn {
+  width: 100%;
+  padding: 0.72rem 1rem;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.btn-coming-soon,
+.btn-coming-soon:hover {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
 .download-meta {
@@ -2450,22 +2509,99 @@ img {
   width: 70px;
   height: 70px;
   border-radius: 20px;
-  margin: 0 auto 1.2rem;
+  margin: 0 auto 1rem;
   box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+}
+
+.modal-version-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: rgba(168, 85, 247, 0.14);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  color: var(--pw-purple-light);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.75rem;
+}
+
+.modal-file-info {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+}
+
+.modal-file-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.modal-file-label {
+  color: var(--text-muted);
+}
+
+.modal-download-status {
+  min-height: 1.2rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--pw-online);
+  margin-bottom: 0.5rem;
+}
+
+.modal-secondary-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  font-size: 0.8rem;
+}
+
+.modal-secondary-link {
+  color: var(--pw-purple-light);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.modal-secondary-link:hover {
+  color: #fff;
 }
 
 /* ==========================================================================
    Media Queries & Responsividade
    ========================================================================== */
-@media (max-width: 1024px) {
+@media (max-width: 1180px) {
+  .brand-tag {
+    display: none;
+  }
+
   .nav-menu {
-    gap: 1rem;
+    gap: 0.9rem;
   }
 
   .nav-link {
-    font-size: 0.82rem;
+    font-size: 0.83rem;
   }
 
+  .nav-actions .btn-sm {
+    padding: 0.42rem 0.85rem;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;
     text-align: center;
@@ -2496,18 +2632,18 @@ img {
   .members-sidebar {
     display: none;
   }
+
+  .download-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width: 768px) {
-  .brand-tag {
-    display: none;
-  }
-
-  .btn-open-web {
+@media (max-width: 960px) {
+  .nav-actions .btn-open-web {
     display: none;
   }
 
@@ -2537,7 +2673,9 @@ img {
   .mobile-toggle {
     display: flex;
   }
+}
 
+@media (max-width: 768px) {
   .feature-row, .feature-row.reverse {
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -2567,6 +2705,12 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .download-grid {
+    grid-template-columns: 1fr;
   }
 }
 

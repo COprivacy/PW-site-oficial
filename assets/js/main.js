@@ -397,9 +397,9 @@ document.addEventListener('DOMContentLoaded', () => {
         {
           author: 'Equipe PW & COprivacy',
           isBot: true,
-          time: 'Ontem às 18:00',
+          time: 'Hoje às 18:00',
           avatar: 'assets/images/logo-pw.jpg',
-          text: '<strong>Atualização 2.4.0 no ar!</strong><br>• Novo mascote robô animado no aplicativo.<br>• Supressão de ruído IA nos canais de voz.<br>• Suporte total a servidores públicos e privados.<br>Obrigado por fazerem parte dessa jornada!',
+          text: '<strong>Versão oficial v1.0.4 publicada!</strong><br>• Novo sistema de modais nativos e convites por ID Gamer.<br>• Correção de inicialização e instalador oficial Windows 64-bit.<br>• Auto-update integrado direto do GitHub Releases.<br>Obrigado por fazerem parte dessa jornada!',
           reactions: [{ type: 'rocket', count: 142 }, { type: 'heart', count: 98 }]
         }
       ]
@@ -634,17 +634,135 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ----------------------------------------------------
-  // 7. Modal de Download Interativo
+  // 7. Integração Real com GitHub Releases (COprivacy/PW-chat-jogo) & Modal de Download
   // ----------------------------------------------------
+  const GITHUB_RELEASE_API = 'https://api.github.com/repos/COprivacy/PW-chat-jogo/releases/latest';
+  const releaseInfo = {
+    tag: 'v1.0.4',
+    version: '1.0.4',
+    setupName: 'PW-Setup-1.0.4.exe',
+    setupSize: '125.9 MB',
+    setupUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/download/v1.0.4/PW-Setup-1.0.4.exe',
+    portableName: 'PW-1.0.4.exe',
+    portableSize: '103.5 MB',
+    portableUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/download/v1.0.4/PW-1.0.4.exe',
+    releasePageUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/tag/v1.0.4',
+  };
+
   const downloadModal = document.getElementById('downloadModal');
   const modalCloseBtn = document.getElementById('modalCloseBtn');
   const modalPlatformName = document.getElementById('modalPlatformName');
   const modalDownloadAction = document.getElementById('modalDownloadAction');
+  const modalReleaseBadge = document.getElementById('modalReleaseBadge');
+  const modalFileName = document.getElementById('modalFileName');
+  const modalFileSize = document.getElementById('modalFileSize');
+  const modalPortableLink = document.getElementById('modalPortableLink');
+  const modalPortableSize = document.getElementById('modalPortableSize');
+  const modalReleasePageLink = document.getElementById('modalReleasePageLink');
+  const modalDownloadStatus = document.getElementById('modalDownloadStatus');
+
+  const heroWinSubtext = document.getElementById('heroWinSubtext');
+  const heroDownloadBtn = document.getElementById('heroDownloadBtn');
+  const winDownloadMeta = document.getElementById('winDownloadMeta');
+  const footerReleaseLink = document.getElementById('footerReleaseLink');
+
+  function formatBytesToMB(bytes) {
+    if (!bytes || typeof bytes !== 'number') return null;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  }
+
+  function applyReleaseMetadataToDOM() {
+    if (heroWinSubtext) {
+      heroWinSubtext.textContent = `Versão ${releaseInfo.version} • 64-bit • Grátis`;
+    }
+    if (heroDownloadBtn) {
+      heroDownloadBtn.setAttribute('href', releaseInfo.setupUrl);
+    }
+    if (winDownloadMeta) {
+      winDownloadMeta.textContent = `Versão ${releaseInfo.version} • ${releaseInfo.setupSize}`;
+    }
+    if (footerReleaseLink) {
+      footerReleaseLink.textContent = `Baixar para PC (${releaseInfo.tag})`;
+      footerReleaseLink.setAttribute('href', releaseInfo.releasePageUrl);
+    }
+    if (modalReleaseBadge) {
+      modalReleaseBadge.textContent = `Release Oficial • ${releaseInfo.tag}`;
+    }
+    if (modalFileName) {
+      modalFileName.textContent = releaseInfo.setupName;
+    }
+    if (modalFileSize) {
+      modalFileSize.textContent = releaseInfo.setupSize;
+    }
+    if (modalDownloadAction) {
+      modalDownloadAction.setAttribute('href', releaseInfo.setupUrl);
+    }
+    if (modalPortableLink) {
+      modalPortableLink.setAttribute('href', releaseInfo.portableUrl);
+    }
+    if (modalPortableSize) {
+      modalPortableSize.textContent = releaseInfo.portableSize;
+    }
+    if (modalReleasePageLink) {
+      modalReleasePageLink.setAttribute('href', releaseInfo.releasePageUrl);
+    }
+
+    if (typeof channelData !== 'undefined' && channelData['anuncios'] && channelData['anuncios'].messages[0]) {
+      channelData['anuncios'].messages[0].text =
+        `<strong>Versão oficial ${releaseInfo.tag} publicada!</strong><br>` +
+        `• Novo sistema de modais nativos e convites por ID Gamer.<br>` +
+        `• Instalador Windows 64-bit (${releaseInfo.setupName}) disponível no site.<br>` +
+        `• Auto-update integrado direto do GitHub Releases.<br>` +
+        `Obrigado por fazerem parte dessa jornada!`;
+    }
+  }
+
+  async function syncLatestGitHubRelease() {
+    try {
+      const response = await fetch(GITHUB_RELEASE_API, {
+        headers: { Accept: 'application/vnd.github.v3+json' },
+      });
+      if (!response.ok) return;
+
+      const data = await response.json();
+      if (!data || !data.tag_name) return;
+
+      releaseInfo.tag = data.tag_name;
+      releaseInfo.version = data.tag_name.replace(/^v/i, '');
+      if (data.html_url) releaseInfo.releasePageUrl = data.html_url;
+
+      const assets = Array.isArray(data.assets) ? data.assets : [];
+      const setupAsset =
+        assets.find(a => /setup.*\.exe$/i.test(a.name)) ||
+        assets.find(a => /\.exe$/i.test(a.name));
+      const portableAsset = assets.find(
+        a => /\.exe$/i.test(a.name) && !/setup/i.test(a.name)
+      );
+
+      if (setupAsset && setupAsset.browser_download_url) {
+        releaseInfo.setupName = setupAsset.name;
+        releaseInfo.setupUrl = setupAsset.browser_download_url;
+        releaseInfo.setupSize = formatBytesToMB(setupAsset.size) || releaseInfo.setupSize;
+      }
+
+      if (portableAsset && portableAsset.browser_download_url) {
+        releaseInfo.portableName = portableAsset.name;
+        releaseInfo.portableUrl = portableAsset.browser_download_url;
+        releaseInfo.portableSize = formatBytesToMB(portableAsset.size) || releaseInfo.portableSize;
+      }
+
+      applyReleaseMetadataToDOM();
+    } catch {
+      // Mantém os metadados padrão de fallback v1.0.4 caso a API esteja indisponível
+    }
+  }
 
   function openDownloadModal(platform) {
     initAudio();
     playSound('click');
-    if (modalPlatformName) modalPlatformName.textContent = platform;
+    applyReleaseMetadataToDOM();
+    if (modalPlatformName) modalPlatformName.textContent = `${platform} (64-bit)`;
+    if (modalDownloadStatus) modalDownloadStatus.textContent = '';
     if (downloadModal) downloadModal.classList.add('active');
   }
 
@@ -654,6 +772,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('[data-download-platform]').forEach(btn => {
     btn.addEventListener('click', (e) => {
+      if (btn.disabled || btn.classList.contains('btn-coming-soon')) return;
       e.preventDefault();
       const platform = btn.getAttribute('data-download-platform') || 'Windows';
       openDownloadModal(platform);
@@ -666,16 +785,33 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target === downloadModal) closeDownloadModal();
     });
   }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && downloadModal && downloadModal.classList.contains('active')) {
+      closeDownloadModal();
+    }
+  });
 
   if (modalDownloadAction) {
     modalDownloadAction.addEventListener('click', () => {
       playSound('message');
-      modalDownloadAction.innerHTML = '<span>Iniciando Download...</span>';
-      setTimeout(() => {
-        modalDownloadAction.innerHTML = '<span>Download Concluído! Abrir Instalador</span>';
-      }, 1500);
+      if (modalDownloadStatus) {
+        modalDownloadStatus.textContent = `Download de ${releaseInfo.setupName} iniciado! Confira os downloads do navegador.`;
+      }
     });
   }
+
+  if (modalPortableLink) {
+    modalPortableLink.addEventListener('click', () => {
+      playSound('message');
+      if (modalDownloadStatus) {
+        modalDownloadStatus.textContent = `Download da versão portátil (${releaseInfo.portableName}) iniciado!`;
+      }
+    });
+  }
+
+  // Aplicar valores iniciais e sincronizar dinamicamente com o GitHub
+  applyReleaseMetadataToDOM();
+  syncLatestGitHubRelease();
 
   // ----------------------------------------------------
   // 8. Botão Abrir no Navegador
