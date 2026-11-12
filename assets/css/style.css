@@ -1966,6 +1966,13 @@ img {
   color: var(--text-dim);
   font-weight: 600;
   font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#streamViewersCount {
+  color: #fff;
+  font-weight: 700;
+  transition: color 0.25s ease;
 }
 
 /* Card Mascote Spotlight */

@@ -805,6 +805,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }, 2400);
     }
+
+    // Flutuação Orgânica de Espectadores ao Vivo (Live Viewers)
+    const streamViewersCount = document.getElementById('streamViewersCount');
+    if (streamViewersCount) {
+      let currentViewers = 1420;
+
+      function updateLiveViewers() {
+        // Variação orgânica entre -8 e +10 espectadores
+        const delta = Math.floor(Math.random() * 19) - 8;
+        currentViewers += delta;
+
+        // Mantém dentro de uma faixa natural (1.390 a 1.485)
+        if (currentViewers < 1390) currentViewers += Math.floor(Math.random() * 9) + 4;
+        if (currentViewers > 1485) currentViewers -= Math.floor(Math.random() * 9) + 4;
+
+        // Formatação pt-BR com ponto de milhar (ex: 1.428)
+        streamViewersCount.textContent = currentViewers.toLocaleString('pt-BR');
+
+        // Próxima atualização em intervalo variável (entre 2.5s e 5.5s) para parecer 100% humano
+        const nextInterval = Math.floor(Math.random() * 3000) + 2500;
+        setTimeout(updateLiveViewers, nextInterval);
+      }
+
+      // Iniciar após 3 segundos
+      setTimeout(updateLiveViewers, 3000);
+    }
   }
 });
 
