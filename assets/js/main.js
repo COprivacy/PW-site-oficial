@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
           isBot: true,
           time: 'Hoje às 18:00',
           avatar: 'assets/images/logo-pw.jpg',
-          text: '<strong>Versão oficial v1.0.4 publicada!</strong><br>• Novo sistema de modais nativos e convites por ID Gamer.<br>• Correção de inicialização e instalador oficial Windows 64-bit.<br>• Auto-update integrado direto do GitHub Releases.<br>Obrigado por fazerem parte dessa jornada!',
+          text: '<strong>Versão oficial v1.0.4 publicada!</strong><br>• Novo sistema de modais nativos e convites por ID Gamer.<br>• Instalador oficial Windows 64-bit e versão portátil disponíveis.<br>• Sistema automático de atualizações integrado ao aplicativo.<br>Obrigado por fazerem parte dessa jornada!',
           reactions: [{ type: 'rocket', count: 142 }, { type: 'heart', count: 98 }]
         }
       ]
@@ -658,13 +658,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalFileSize = document.getElementById('modalFileSize');
   const modalPortableLink = document.getElementById('modalPortableLink');
   const modalPortableSize = document.getElementById('modalPortableSize');
-  const modalReleasePageLink = document.getElementById('modalReleasePageLink');
   const modalDownloadStatus = document.getElementById('modalDownloadStatus');
 
   const heroWinSubtext = document.getElementById('heroWinSubtext');
   const heroDownloadBtn = document.getElementById('heroDownloadBtn');
   const winDownloadMeta = document.getElementById('winDownloadMeta');
-  const footerReleaseLink = document.getElementById('footerReleaseLink');
 
   function formatBytesToMB(bytes) {
     if (!bytes || typeof bytes !== 'number') return null;
@@ -681,12 +679,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (winDownloadMeta) {
       winDownloadMeta.textContent = `Versão ${releaseInfo.version} • ${releaseInfo.setupSize}`;
     }
-    if (footerReleaseLink) {
-      footerReleaseLink.textContent = `Baixar para PC (${releaseInfo.tag})`;
-      footerReleaseLink.setAttribute('href', releaseInfo.releasePageUrl);
-    }
     if (modalReleaseBadge) {
-      modalReleaseBadge.textContent = `Release Oficial • ${releaseInfo.tag}`;
+      modalReleaseBadge.textContent = `Versão Oficial • ${releaseInfo.tag}`;
     }
     if (modalFileName) {
       modalFileName.textContent = releaseInfo.setupName;
@@ -703,16 +697,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modalPortableSize) {
       modalPortableSize.textContent = releaseInfo.portableSize;
     }
-    if (modalReleasePageLink) {
-      modalReleasePageLink.setAttribute('href', releaseInfo.releasePageUrl);
-    }
 
     if (typeof channelData !== 'undefined' && channelData['anuncios'] && channelData['anuncios'].messages[0]) {
       channelData['anuncios'].messages[0].text =
         `<strong>Versão oficial ${releaseInfo.tag} publicada!</strong><br>` +
         `• Novo sistema de modais nativos e convites por ID Gamer.<br>` +
         `• Instalador Windows 64-bit (${releaseInfo.setupName}) disponível no site.<br>` +
-        `• Auto-update integrado direto do GitHub Releases.<br>` +
+        `• Sistema automático de atualizações integrado ao aplicativo.<br>` +
         `Obrigado por fazerem parte dessa jornada!`;
     }
   }
