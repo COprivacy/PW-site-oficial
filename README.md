@@ -29,7 +29,7 @@
 
 O **PW** é uma plataforma moderna no estilo Discord com tema exclusivo em **Preto Profundo, Roxo Neon e Vermelho Carmesim**, criada especialmente para comunidades de games, grupos de estudos e amigos que desejam um ambiente rápido, leve e sem propagandas.
 
-Construído com foco em segurança com **Certificado SSL/TLS 1.3 de 256-Bits (Let's Encrypt / GitHub Secure)**, o PW coloca a privacidade do usuário em primeiro lugar, oferecendo servidores criptografados e sem comercialização de dados pessoais. Mantido por **[COprivacy](https://github.com/COprivacy)**.
+Construído com foco em segurança com **Certificado SSL/TLS 1.3 de 256-Bits (Let's Encrypt / GitHub Secure)**, o PW coloca a privacidade do usuário em primeiro lugar, oferecendo servidores criptografados e sem comercialização de dados pessoais. Desenvolvido por **Pavisoft Sistemas**.
 
 ---
 
@@ -109,7 +109,7 @@ Para abrir o site no seu computador:
 
 ---
 
-## COprivacy
+## Autoria & Desenvolvimento
 
-Desenvolvido e mantido pela organização **[COprivacy](https://github.com/COprivacy)**.
+Desenvolvido e mantido por **Pavisoft Sistemas** ([Repositório GitHub](https://github.com/COprivacy/PW-site-oficial)).
 Todos os direitos reservados © 2026.
