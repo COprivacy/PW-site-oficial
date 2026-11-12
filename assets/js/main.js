@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ----------------------------------------------------
-  // 3. Canvas de Estrelas / Partículas Cyber Neon
+  // 3. Canvas de Estrelas & Luzes Brilhantes Cyber Neon
   // ----------------------------------------------------
   const canvas = document.getElementById('starsCanvas');
   if (canvas) {
@@ -197,34 +197,54 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const particles = [];
-    const particleCount = Math.min(Math.floor(width / 22), 65);
+    // Mais luzes brilhantes distribuídas dinamicamente
+    const particleCount = Math.min(Math.floor(width / 9), 160);
+
+    const colors = [
+      { r: 239, g: 68, b: 68, hex: '#ef4444' },    // Vermelho Carmesim Neon
+      { r: 168, g: 85, b: 247, hex: '#a855f7' },   // Roxo Neon
+      { r: 192, g: 132, b: 252, hex: '#c084fc' },  // Roxo Elétrico Claro
+      { r: 248, g: 113, b: 113, hex: '#f87171' },  // Coral Carmesim
+      { r: 255, g: 255, b: 255, hex: '#ffffff' }   // Branco Estelar
+    ];
 
     for (let i = 0; i < particleCount; i++) {
+      const colorObj = colors[Math.floor(Math.random() * colors.length)];
+      const isBigGlow = Math.random() < 0.16; // 16% são orbes de luz maiores com aura
+
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        radius: Math.random() * 1.8 + 0.6,
-        alpha: Math.random() * 0.7 + 0.3,
-        speedX: (Math.random() - 0.5) * 0.4,
-        speedY: (Math.random() - 0.5) * 0.4,
-        color: Math.random() > 0.5 ? '#ef4444' : (Math.random() > 0.35 ? '#a855f7' : '#ffffff')
+        radius: isBigGlow ? Math.random() * 3.2 + 2.2 : Math.random() * 1.8 + 0.6,
+        baseAlpha: Math.random() * 0.4 + 0.45,
+        alpha: 0.6,
+        twinkleSpeed: Math.random() * 0.03 + 0.012,
+        twinklePhase: Math.random() * Math.PI * 2,
+        speedX: (Math.random() - 0.5) * (isBigGlow ? 0.22 : 0.42),
+        speedY: (Math.random() - 0.5) * (isBigGlow ? 0.22 : 0.42),
+        colorObj: colorObj,
+        isBigGlow: isBigGlow
       });
     }
 
+    let frame = 0;
     function animateParticles() {
+      frame++;
       ctx.clearRect(0, 0, width, height);
 
-      // Desenhar conexões próximas
+      // Linhas sutis de constelação entre partículas próximas
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (dist < 110) {
+          if (distSq < 9500) { // dist < ~97px
+            const dist = Math.sqrt(distSq);
+            const lineAlpha = 0.18 * (1 - dist / 97);
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(239, 68, 68, ${0.14 * (1 - dist / 110)})`;
-            ctx.lineWidth = 0.8;
+            ctx.strokeStyle = `rgba(168, 85, 247, ${lineAlpha})`;
+            ctx.lineWidth = 0.7;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.stroke();
@@ -232,25 +252,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // Desenhar pontos
+      // Desenhar pontos e esferas de luz brilhantes
       particles.forEach(p => {
+        // Pulsação / cintilação individual de cada luz
+        p.alpha = p.baseAlpha + Math.sin(frame * p.twinkleSpeed + p.twinklePhase) * 0.35;
+        p.alpha = Math.max(0.18, Math.min(1, p.alpha));
+
+        const { r, g, b, hex } = p.colorObj;
+
+        if (p.isBigGlow) {
+          // Luz grande com aura radial estelar
+          const auraRadius = p.radius * 4;
+          const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, auraRadius);
+          grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${p.alpha * 0.85})`);
+          grad.addColorStop(0.35, `rgba(${r}, ${g}, ${b}, ${p.alpha * 0.35})`);
+          grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+          
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, auraRadius, 0, Math.PI * 2);
+          ctx.fillStyle = grad;
+          ctx.fill();
+        }
+
+        // Ponto central brilhante com sombra neon
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.alpha;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = p.color;
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.alpha})`;
+        ctx.shadowBlur = p.isBigGlow ? 18 : 9;
+        ctx.shadowColor = hex;
         ctx.fill();
         ctx.shadowBlur = 0;
-        ctx.globalAlpha = 1;
 
         p.x += p.speedX;
         p.y += p.speedY;
 
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
+        if (p.x < -10) p.x = width + 10;
+        if (p.x > width + 10) p.x = -10;
+        if (p.y < -10) p.y = height + 10;
+        if (p.y > height + 10) p.y = -10;
       });
 
       requestAnimationFrame(animateParticles);
