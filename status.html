@@ -67,7 +67,7 @@
         Acompanhe a disponibilidade dos componentes que mantêm o PW Desktop e Web funcionando: conectividade P2P de voz e vídeo, sinalização em tempo real, autenticação e entrega de atualizações.
       </p>
       <div class="subpage-meta-bar">
-        <span>Versão Estável Atual: <strong id="statusVersionValue" style="color: #fff;">v1.0.7</strong></span>
+        <span>Versão Estável Atual: <strong id="statusVersionValue" style="color: #fff;">v1.0.8</strong></span>
         <span>•</span>
         <span id="statusLastCheck">Verificando agora...</span>
       </div>
@@ -182,7 +182,10 @@
       <div class="doc-card">
         <h2>Histórico Recente de Estabilidade</h2>
         <div class="doc-highlight-box" style="margin-bottom: 0.85rem;">
-          <strong>Versão v1.0.7 (Atual)</strong> — Aprimoramento do Inbox Offline: gravação garantida com <code class="doc-code-inline">await</code> e fallback por ACK em 2,5s, badges vermelhos de mensagens não lidas em Amigos/DMs, proteção de JWT (evitando estouro por avatares base64) e entrega confiável de convites offline.
+          <strong>Versão v1.0.8 (Atual)</strong> — Auto-refresh automático de sessões com JWT antigo/inchado (<code class="doc-code-inline">refreshSession()</code>), persistência síncrona via <code class="doc-code-inline">keepalive</code> ao fechar ou sair do app logo após enviar uma DM, limpeza de metadados base64 no SQL e bloqueio definitivo de payloads pesados em <code class="doc-code-inline">user_metadata</code>.
+        </div>
+        <div class="doc-highlight-box" style="margin-bottom: 0.85rem;">
+          <strong>Versão v1.0.7</strong> — Aprimoramento do Inbox Offline: gravação garantida com <code class="doc-code-inline">await</code> e fallback por ACK em 2,5s, badges vermelhos de mensagens não lidas em Amigos/DMs, proteção de JWT (evitando estouro por avatares base64) e entrega confiável de convites offline.
         </div>
         <div class="doc-highlight-box" style="margin-bottom: 0.85rem;">
           <strong>Versão v1.0.6</strong> — Inbox offline para DMs: mensagens enviadas enquanto o destinatário estava offline agora são entregues automaticamente quando ele abrir o app, usando armazenamento temporário no Supabase com deleção imediata após leitura. Inclui também todas as melhorias de estabilidade, layout responsivo e WebRTC das versões anteriores.
