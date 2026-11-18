@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
           isBot: true,
           time: 'Hoje às 18:00',
           avatar: 'assets/images/logo-pw.jpg',
-          text: '<strong>Versão oficial v1.0.9 publicada!</strong><br>• Novo sistema de modais nativos e convites por ID Gamer.<br>• Instalador oficial Windows 64-bit e versão portátil disponíveis.<br>• Sistema automático de atualizações integrado ao aplicativo.<br>Obrigado por fazerem parte dessa jornada!',
+          text: '<strong>Versão oficial v1.1.4 publicada!</strong><br>• Notificações nativas no Windows mesmo minimizado ou na bandeja.<br>• Novo ícone Squircle transparente, som de chamada de saída e áudio sem eco.<br>• Botão Voltar mobile, slider de volume corrigido e auto-update integrado.',
           reactions: [{ type: 'rocket', count: 142 }, { type: 'heart', count: 98 }]
         }
       ]
@@ -640,15 +640,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // ----------------------------------------------------
   const GITHUB_RELEASE_API = 'https://api.github.com/repos/COprivacy/PW-chat-jogo/releases/latest';
   const releaseInfo = {
-    tag: 'v1.0.9',
-    version: '1.0.9',
-    setupName: 'PW-Setup-1.0.9.exe',
-    setupSize: '125.9 MB',
-    setupUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/download/v1.0.9/PW-Setup-1.0.9.exe',
-    portableName: 'PW-1.0.9.exe',
-    portableSize: '103.5 MB',
-    portableUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/download/v1.0.9/PW-1.0.9.exe',
-    releasePageUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/tag/v1.0.9',
+    tag: 'v1.1.4',
+    version: '1.1.4',
+    setupName: 'PW-Setup-1.1.4.exe',
+    setupSize: '125.8 MB',
+    setupUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/download/v1.1.4/PW-Setup-1.1.4.exe',
+    portableName: 'PW-1.1.4.exe',
+    portableSize: '104.0 MB',
+    portableUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/download/v1.1.4/PW-1.1.4.exe',
+    releasePageUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/tag/v1.1.4',
   };
 
   const downloadModal = document.getElementById('downloadModal');
@@ -746,7 +746,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       applyReleaseMetadataToDOM();
     } catch {
-      // Mantém os metadados padrão de fallback v1.0.9 caso a API esteja indisponível
+      // Mantém os metadados padrão de fallback v1.1.4 caso a API esteja indisponível
     }
   }
 
