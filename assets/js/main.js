@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
           isBot: true,
           time: 'Hoje às 20:50',
           avatar: 'assets/images/logo-pw.jpg',
-          text: '<strong>Versão oficial v1.1.5 publicada!</strong><br>• Nova <strong>Loja Oficial PW & Inventário</strong> integrada em tempo real.<br>• Molduras de avatar animadas (<em>Headset Orbital PW</em>, <em>Katana Cyberpunk</em>), efeitos de perfil, nameplates e insígnias.<br>• Cosméticos visíveis ao vivo no chat, servidores, lista de membros e canais de voz.',
+          text: '<strong>Versão oficial v1.1.6 publicada!</strong><br>• Nova <strong>Loja Oficial PW & Inventário</strong> integrada em tempo real.<br>• 6 estilos de Nameplates animados (Placa Neon, Cyber HUD, Chamas, Chroma RGB, Imperial 24K) e 8 animações de Molduras de Avatar.<br>• Presença online/offline em tempo real aprimorada e cosméticos visíveis no chat, servidores e chamadas.',
           reactions: [{ type: 'rocket', count: 168 }, { type: 'heart', count: 112 }]
         }
       ]
@@ -640,15 +640,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // ----------------------------------------------------
   const GITHUB_RELEASE_API = 'https://api.github.com/repos/COprivacy/PW-chat-jogo/releases/latest';
   const releaseInfo = {
-    tag: 'v1.1.5',
-    version: '1.1.5',
-    setupName: 'PW-Setup-1.1.5.exe',
-    setupSize: '126.4 MB',
-    setupUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/download/v1.1.5/PW-Setup-1.1.5.exe',
-    portableName: 'PW-1.1.5.exe',
-    portableSize: '104.6 MB',
-    portableUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/download/v1.1.5/PW-1.1.5.exe',
-    releasePageUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/tag/v1.1.5',
+    tag: 'v1.1.6',
+    version: '1.1.6',
+    setupName: 'PW-Setup-1.1.6.exe',
+    setupSize: '126.7 MB',
+    setupUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/download/v1.1.6/PW-Setup-1.1.6.exe',
+    portableName: 'PW-1.1.6.exe',
+    portableSize: '104.8 MB',
+    portableUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/download/v1.1.6/PW-1.1.6.exe',
+    releasePageUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/tag/v1.1.6',
   };
 
   const downloadModal = document.getElementById('downloadModal');
