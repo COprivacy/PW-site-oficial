@@ -399,10 +399,10 @@ document.addEventListener('DOMContentLoaded', () => {
         {
           author: 'Equipe PW & COprivacy',
           isBot: true,
-          time: 'Hoje às 18:00',
+          time: 'Hoje às 20:50',
           avatar: 'assets/images/logo-pw.jpg',
-          text: '<strong>Versão oficial v1.1.4 publicada!</strong><br>• Notificações nativas no Windows mesmo minimizado ou na bandeja.<br>• Novo ícone Squircle transparente, som de chamada de saída e áudio sem eco.<br>• Botão Voltar mobile, slider de volume corrigido e auto-update integrado.',
-          reactions: [{ type: 'rocket', count: 142 }, { type: 'heart', count: 98 }]
+          text: '<strong>Versão oficial v1.1.5 publicada!</strong><br>• Nova <strong>Loja Oficial PW & Inventário</strong> integrada em tempo real.<br>• Molduras de avatar animadas (<em>Headset Orbital PW</em>, <em>Katana Cyberpunk</em>), efeitos de perfil, nameplates e insígnias.<br>• Cosméticos visíveis ao vivo no chat, servidores, lista de membros e canais de voz.',
+          reactions: [{ type: 'rocket', count: 168 }, { type: 'heart', count: 112 }]
         }
       ]
     },
@@ -640,15 +640,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // ----------------------------------------------------
   const GITHUB_RELEASE_API = 'https://api.github.com/repos/COprivacy/PW-chat-jogo/releases/latest';
   const releaseInfo = {
-    tag: 'v1.1.4',
-    version: '1.1.4',
-    setupName: 'PW-Setup-1.1.4.exe',
-    setupSize: '125.8 MB',
-    setupUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/download/v1.1.4/PW-Setup-1.1.4.exe',
-    portableName: 'PW-1.1.4.exe',
-    portableSize: '104.0 MB',
-    portableUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/download/v1.1.4/PW-1.1.4.exe',
-    releasePageUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/tag/v1.1.4',
+    tag: 'v1.1.5',
+    version: '1.1.5',
+    setupName: 'PW-Setup-1.1.5.exe',
+    setupSize: '126.4 MB',
+    setupUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/download/v1.1.5/PW-Setup-1.1.5.exe',
+    portableName: 'PW-1.1.5.exe',
+    portableSize: '104.6 MB',
+    portableUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/download/v1.1.5/PW-1.1.5.exe',
+    releasePageUrl: 'https://github.com/COprivacy/PW-chat-jogo/releases/tag/v1.1.5',
   };
 
   const downloadModal = document.getElementById('downloadModal');
@@ -703,9 +703,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof channelData !== 'undefined' && channelData['anuncios'] && channelData['anuncios'].messages[0]) {
       channelData['anuncios'].messages[0].text =
         `<strong>Versão oficial ${releaseInfo.tag} publicada!</strong><br>` +
-        `• Novo sistema de modais nativos e convites por ID Gamer.<br>` +
+        `• Nova Loja Oficial PW & Inventário com molduras animadas, efeitos de perfil, nameplates e insígnias.<br>` +
         `• Instalador Windows 64-bit (${releaseInfo.setupName}) disponível no site.<br>` +
-        `• Sistema automático de atualizações integrado ao aplicativo.<br>` +
+        `• Sincronização em tempo real e sistema automático de atualizações integrado.<br>` +
         `Obrigado por fazerem parte dessa jornada!`;
     }
   }
